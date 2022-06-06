@@ -1,0 +1,79 @@
+.cr-header {
+  justify-content: flex-start;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 1080;
+  min-height: 65px;
+  &.navbar {
+    padding: 0 80px 0 15px;
+  }
+  &__navbar-brand {
+    max-width: 200px;
+  }
+  &__nav-right {
+    margin-left: auto;
+  }
+  &__navbar__tglHld {
+    padding: 15px 15px 15px 0;
+    border-right: 1px solid #ccc;
+    margin-right: 30px;
+  }
+  &__navbar__tglBtn {
+    background: none;
+    height: 32px;
+    border: 0;
+    padding: 0;
+  }
+  &__navbar__tglBtn {
+    .nav-close {
+      display: none;
+    }
+    &.cr_sidebar--active {
+      .nav-close {
+        display: block;
+      }
+      .nav-open {
+        display: none;
+      }
+    }
+  }
+
+  .user-btn {
+    .btn {
+      background: none;
+      color: #122a4a;
+      border: 0;
+      min-width: auto;
+      font-size: 25px;
+    }
+    .btn-success.focus,
+    .btn-success:focus {
+      box-shadow: none;
+    }
+    .btn-success:not(:disabled):not(.disabled).active:focus,
+    .btn-success:not(:disabled):not(.disabled):active:focus,
+    &.show > .btn-success.dropdown-toggle:focus {
+      box-shadow: none;
+    }
+
+    .btn-success:not(:disabled):not(.disabled).active,
+    .btn-success:not(:disabled):not(.disabled):active,
+    &.show > .btn-success.dropdown-toggle {
+      background: none;
+      color: #122a4a;
+      border: 0;
+      box-shadow: none;
+    }
+  }
+}
+.cr-header__navbar-brand img {
+  height: 1.5rem;
+}
+
+#dropdown-basic:focus, #dropdown-basic:active{
+  box-shadow: none;
+  background-color: transparent;
+  color: #122a4a;
+}

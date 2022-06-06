@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice</title>
+</head>
+<body>
+    <% var email_config = Config('application').email %> 
+    <table style="width: 800px; border: 1px solid #d1d1d1; padding: 15px; font-family: Arial, Helvetica, sans-serif;" name="Invoice">
+        <tr style="padding-bottom: 10px;">
+            <!-- <td style="vertical-align: middle;text-align: center;" colspan="2">
+                 <img src="<%= email_config.logo %>" alt="Logo" style="width: 139px;height: 24px;"/> 
+                <img src="http://65.2.8.152/static/media/logo.6d5446be.png" alt="Logo" style="width: 139px;height: 24px;"/>
+                
+            </td> -->
+            <td style="width:95%;font-weight: bold;">Sales Invoice</td>
+         </tr>
+        <tr style="padding-bottom: 10px;">
+           <td style="width:5%; ">Date:</td>
+           <td style="width:95%;font-weight: bold;"><%=  moment().format('DD/MM/YYYY') %></td>
+        </tr>
+        <tr>
+            <td>To</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>From</td>
+       </tr>
+       <tr>
+        <td><%= details.user_details.name %></td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>Interlinkages Ltd</td>
+   </tr>    
+    <tr>
+        <td style="width:95%;"><%= details.user_details.address %>,<%= details.city_details.name %>, <%= details.state_details.name %>,<%= details.country_details.name %>
+       </td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td style="width:95%;">9/F Amtel Building,148 Des Voeux Road Central,Hong Kong
+       </td>
+   </tr>
+   <tr>
+          
+    <td style="width:60%;font-weight: bold;">Invoice number:</td><td style="width:40%;font-weight: bold;"><%= details.invoice_no %></td>
+     </tr>
+     <tr>
+        <td>Issued: </td><td><%=  moment().format('DD/MM/YYYY') %>  </td>
+     </tr>
+     <tr>
+        <td>Due:</td><td><%= details.due_date %> </td>
+     </tr>
+  
+        <tr>
+            <td style="padding: 10px; width:10%;font-weight: bold;">S. No.</td>
+            <td style="padding: 10px; text-align: left; width:30%;font-weight: bold;">Description</td>
+            <td style="padding: 10px;font-weight: bold;width:20%;">Number of reports</td>
+            <td style="padding: 10px;font-weight: bold;width:20%;">Price per report USD</td>
+            <td style="padding: 10px;font-weight: bold;width:20%;">Total Value USD</td>
+        </tr>
+        <tr>
+            <td style="padding: 10px; text-align: center; border-bottom: 1px solid #d1d1d1;width:10%;">1</td>
+            <td style="padding: 10px; border-bottom: 1px solid #d1d1d1;width:30%;">Credit report - <%= details.group_details.group_name %></td>
+            <td style="padding: 10px; text-align: center; border-bottom: 1px solid #d1d1d1;width:20%;"><%= details.no_of_report %></td>
+            <td style="padding: 10px; text-align: center; border-bottom: 1px solid #d1d1d1;width:20%;"><%= details.CustomerOrderPriceManagement.cost_per_report %></td>
+            <td style="padding: 10px; text-align: center; border-bottom: 1px solid #d1d1d1;width:20%;"><%= details.total_amount %></td>
+        </tr>
+        
+        <tr>
+            <td style="padding: 10px; width: 60%;" colspan="3">&nbsp;</td>
+            <td style="padding: 10px; text-align: center;width:200px;">Total due (USD)</td>
+            <td style="padding: 10px; text-align: center;width:20%;"><%= details.total_amount %></td>
+        </tr>
+        <tr>
+            <td style="padding: 10px; width: 60%;" colspan="3">&nbsp;</td>
+            <td style="padding: 10px; text-align: center;width:200px;">Tax (0%)</td>
+            <td style="padding: 10px; text-align: center;width:20%;"><%= details.CustomerOrderPriceManagement.tax %></td>
+        </tr>
+        <tr>
+            <td style="padding: 10px; width: 60%;" colspan="3">&nbsp;</td>
+            <td style="padding: 10px; text-align: center;width:200px;">Grand total (USD)</td>
+            <td style="padding: 10px; text-align: center;width:20%;"><%= details.total_amount+details.CustomerOrderPriceManagement.tax %></td>
+        </tr>
+    
+    <tr>
+        <td style="width:200px;">Please make Payment to</td>
+
+     </tr>
+     <tr>
+        <td>Beneficiary</td>
+        <td>Interlinkages Limited</td>
+     </tr>
+     <tr>
+        <td>Beneficiary Bank</td>
+        <td>HSBC, Hong Kong</td>
+     </tr>
+     <tr>
+        <td>Beneficiary Branch</td>
+        <td>1 Queens Road Central, Hong Kong</td>
+     </tr>
+     <tr>
+        <td>Account number</td>
+        <td>741069280838</td>
+     </tr>
+     <tr>
+        <td>SWIFT Code</td>
+        <td>HSBCHKHHHKH</td>
+     </tr>
+ 
+<tr>
+<td colspan="2" style="padding-top: 20px;"> Thank you for your business. </td>
+</tr>
+<tr>
+<td colspan="2"> Best Regards </td>
+</tr>
+     </table>
+</body>
+</html>

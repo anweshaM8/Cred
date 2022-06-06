@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice</title>
+</head>
+<body>
+    <% var email_config = Config('application').email %>
+    <table style="width: 100%;margin: 0 auto; padding: 10px; font-family: Arial, Helvetica, sans-serif;font-size: 10px;">
+        <tr>
+            <td style="vertical-align: middle;text-align: center;" colspan="2">
+                <img src="<%= email_config.logo %>" alt="Logo" style="width: 139px;height: 24px;"/>
+            </td>
+        </tr>
+        <tr style="padding-bottom: 10px;">
+            <td style="width:5%; font-weight: bold;">Date:</td>
+            <td style="width:95%;"><%=  moment().format('DD/MM/YYYY') %></td>
+        </tr>
+        <tr>
+            <td colspan="2" style="padding-top: 10px;">
+                <table style="width: 80%;margin: 0 auto;">
+                    <tr>
+                        <td style="width: 50%;">
+                            <p style="margin:0;padding:5px 0;"><strong>To</strong></p>
+                            <p style="margin:0;padding:5px 0;"><%= details.user_details.name %></p>
+                            <p style="margin:0;padding:5px 0; line-height: 20px; font-size: 10px;"><%= details.user_details.address %>,
+                                <br> <%= details.city_details.name %>, <%= details.state_details.name %>,<%= details.country_details.name %></p>
+                        </td>
+                        <td style="width: 50%;">
+                            <p style="margin:0;padding:5px 0;"><strong>From</strong></p>
+                            <p style="margin:0;padding:5px 0;">Interlinkages Ltd.</p>
+                            <p style="margin:0;padding:5px 0; line-height: 20px; font-size: 10px;">
+                                9/F Amtel Building,<br>
+                                148 Des Voeux Road Central<br>
+                                Hong Kong
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="padding-top: 10px;">
+                <table style="width: 80%;margin: 0 auto;">
+                    <tr>
+                        <td><strong>Invoice number:</strong> <%= details.invoice_no %> </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Issued:</strong> <%=  moment().format('DD/MM/YYYY') %> </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Due:</strong><%= details.due_date %> </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="padding-top: 10px;">
+                <table style="width: 80%;margin: 0 auto; border: 1px solid #d1d1d1; padding: 0; border-collapse: collapse;">
+                    <tr>
+                        <th style="padding: 10px; width:10%;"><strong>S. No.</strong></th>
+                        <th style="padding: 10px; text-align: left; width:30%;"><strong>Description</strong></th>
+                        <th style="padding: 10px;"><strong>Number of reports</strong></th>
+                        <th style="padding: 10px;"><strong>Price per report USD</strong></th>
+                        <th style="padding: 10px;"><strong>Total Value USD</strong></th>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px; text-align: center; border-bottom: 1px solid #d1d1d1;">1</td>
+                        <td style="padding: 10px; border-bottom: 1px solid #d1d1d1;">Credit report - <%= details.group_details.group_name %></td>
+                        <td style="padding: 10px; text-align: center; border-bottom: 1px solid #d1d1d1;"><%= details.total_report %>(ON:<%= details.on_count %>+FI:<%= details.fi_count %>)</td>
+                        <td style="padding: 10px; text-align: center; border-bottom: 1px solid #d1d1d1;">ON-<%= details.on_price_each %>,FI-<%= details.fi_price_each %></td>
+                        <td style="padding: 10px; text-align: center; border-bottom: 1px solid #d1d1d1;"><%= details.total_report_cost %></td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px; width: 60%;" colspan="3">&nbsp;</td>
+                        <td style="padding: 10px; text-align: center;">Total due (USD)</td>
+                        <td style="padding: 10px; text-align: center;"><%= details.total_amount %></td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px; width: 60%;" colspan="3">&nbsp;</td>
+                        <td style="padding: 10px; text-align: center;">Tax (0%)</td>
+                        <td style="padding: 10px; text-align: center;"><%= details.CustomerOrderPriceManagement.tax %></td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px; width: 60%;" colspan="3">&nbsp;</td>
+                        <td style="padding: 10px; text-align: center;"><strong>Grand total (USD)</strong></td>
+                        <td style="padding: 10px; text-align: center;"><strong><%= details.total_amount+details.CustomerOrderPriceManagement.tax %></strong></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="padding-top: 10px;">
+                <table style="width: 80%;margin: 0 auto;">
+                    <tr>
+                        <td style="width:200px;">Please make Payment to</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Beneficiary</td>
+                        <td>Interlinkages Limited</td>
+                    </tr>
+                    <tr>
+                        <td>Beneficiary Bank</td>
+                        <td>HSBC, Hong Kong</td>
+                    </tr>
+                    <tr>
+                        <td>Beneficiary Branch</td>
+                        <td>1 Queens Road Central, Hong Kong</td>
+                    </tr>
+                    <tr>
+                        <td>Account number</td>
+                        <td>741069280838</td>
+                    </tr>
+                    <tr>
+                        <td>SWIFT Code</td>
+                        <td>HSBCHKHHHKH</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="padding-top: 20px;">
+                Thank you for your business.
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                Best Regards
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

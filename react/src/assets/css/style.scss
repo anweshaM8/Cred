@@ -1,0 +1,97 @@
+// @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,200&display=swap');
+
+
+@import "./variable";
+@import "./common";
+
+/*-----------------------------------table -------------------------*/
+.table-wrapper {
+  box-shadow: 0 0 0.8rem rgba(0, 0, 0, 0.05);
+  width: 100%;
+  overflow: auto;
+}
+.table-wrapper .table-heading .table-heading-text {
+  border-left: 2px solid $theme-color1;
+  white-space: nowrap;
+  line-height: 1.1;
+}
+.table-wrapper .table-heading .table-heading-text strong {
+  color: #11365a;
+  display: inline-block;
+  margin-right: 0.5rem;
+}
+
+.table-container {
+  width: 100%;
+  overflow: auto;
+  position: relative;
+  max-height: calc(100vh - 20rem);
+}
+.table-container::-webkit-scrollbar {
+  width: 0.5rem;
+  height: 0.5rem;
+  position: absolute;
+}
+.table-container::-webkit-scrollbar-thumb {
+  background: #4d3d32;
+}
+.table-container::-webkit-scrollbar-track {
+  background: #eeeeee;
+}
+.table-container {
+  scrollbar-face-color: #4d3d32;
+  scrollbar-track-color: #eeeeee;
+}
+.table-container.paginatin {
+  max-height: calc(100vh - 20rem);
+}
+
+table {
+  width: 100%;
+  border-color: #eeeeee !important;
+  background: #fff;
+  min-width: 70rem;
+}
+table thead {
+  background: #f0f9ff;
+  font-size: 0.875rem;
+}
+table thead th {
+  border-color: #eeeeee;
+  color: #707070;
+  border-right: none;
+  padding: 1rem;
+  font-weight: 500;
+  background: #f0f9ff;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 9;
+}
+table tbody tr:hover td {
+  background: #f8f8f8;
+}
+table tbody td {
+  border-color: #eeeeee;
+  border-right: none;
+  padding: 0.5rem 1rem;
+  color: #11365a;
+  font-weight: 500;
+}
+table tbody td[title="Green"] {
+  color: #27bcc2;
+}
+table tbody td[title="Red"] {
+  color: #ff0000;
+}
+.refreshIconHldr {
+  color: #fff !important;
+    background-color: #ff5000 !important;
+    border-color: #ff5000 !important;
+    font-size: 20px;
+    padding: 4px;
+    cursor: pointer;
+}
+
+/*-----------------------------------table end -------------------------*/

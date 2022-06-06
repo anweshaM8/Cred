@@ -1,0 +1,88 @@
+.bank-name_box {
+    background: #fff;
+    padding: 20px 20px 5px 20px;
+    box-shadow: 0 0 0.8rem rgba(0, 0, 0, 0.2);
+    .bank-name_ul{
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap;
+        
+        li{
+            list-style: none;
+            flex: 0 0 50%;
+            max-width: 50%;
+            margin-bottom: 15px;
+            @media(max-width:767px){
+                flex: 100%;
+                max-width: 100%;
+            }
+            .customer-details{
+                display: flex;
+                flex-wrap: wrap;
+                .col{
+                    margin: 0;
+                }
+            }
+        }
+    }
+}
+
+.order-tab{
+    .nav-item{
+        color: #707070;
+        padding: 10px 30px;
+        &.active{
+            border-top: 2px solid #ff5000;
+            border-radius: 0;
+            color: #000;
+            font-weight: 500;
+        }
+    }
+    .view-report{
+        color: #ff5000;
+        text-decoration: none;
+        svg{
+            fill: #ff5000;
+        }
+    }
+}
+
+.advSearch{
+    cursor: pointer;
+    text-decoration: underline;
+}
+.f25{
+    font-size: 25px;
+}
+
+.uploadDiv{
+    border: none;
+    background: #f4f5f7;
+    padding: 20px;
+}
+
+.react-pdf__Page__canvas {
+    margin: 0 auto;
+    width: 80% !important;
+    height: 100% !important;
+}
+.modelHeader{
+    font-size: 20px;
+    color: #4d3d32;
+}
+.searchModal{
+    .close{
+        font-size: 30px;
+    }
+}
+
+.bdWarning {
+    background-color: #ffa343;
+    padding: 2px
+}
+
+.bdSuccess {
+    background-color: lightgreen;
+    padding: 2px
+}

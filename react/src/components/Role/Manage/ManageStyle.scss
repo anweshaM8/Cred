@@ -1,0 +1,22 @@
+.card_box{
+    .card{
+        height: 100%;
+    }
+    .card-body{
+        padding-top: 5px;
+        padding-bottom: 5px;
+        justify-content: flex-start;
+    }
+    label{
+        margin-bottom: 0;
+        margin-left: 5px;
+        width: 90%;
+    }
+    .mangechkbox{
+        width: 20px;
+        margin-top: 5px;
+    }
+    .livtBlock{
+        display: flex;
+    }
+}

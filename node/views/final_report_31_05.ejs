@@ -1,0 +1,130 @@
+<!DOCTYPE html><html lang="en">
+<head>
+    <meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Search Report</title>
+</head>
+<body>
+    <table cellspacing="0" cellpadding="0" style="border: 0; margin: 0 auto; width: 80%;">
+        <tr>
+            <td>
+                <table  cellspacing="0" cellpadding="5" style="border: 0; margin: 0 auto 20px auto; width: 100%;">
+                    <tr style="font-family: Arial; font-size: 7.5pt; color: #000; ">
+                        <td>Due Diligence Report</td>
+                    </tr>
+                    <tr>
+                        <td style="font-family: Arial; font-size: 18.75pt; color: #000; font-weight: 700; padding-bottom: 7.5pt;text-transform: uppercase;"><%= dataObj.company_name %></td>
+                    </tr>
+                    <tr style="height: 15px;font-family: Arial; font-size: 7.5pt; color: #000; text-transform:capitalize; ">
+                        <td style="height: 15px;line-height: 15px;padding: 0 0 0 5px;"><%= dataObj.address_line1 %></td>
+                    </tr>
+                    <tr style="height: 15px;font-family: Arial; font-size: 7.5pt; color: #000; text-transform: capitalize; ">
+                        <td style="height: 15px;line-height: 15px;padding: 0 0 0 5px;"><%= dataObj.address_line2 %></td>
+                    </tr>
+                    <tr style="height: 15px;font-family: Arial; font-size: 7.5pt; color: #000; text-transform: capitalize;">
+                        <td style="text-transform: capitalize;height: 15px;line-height: 15px;padding: 0 0 0 5px;"><%= dataObj.address_line3 %></td>
+                    </tr>
+                </table>
+                <table  cellspacing="0" cellpadding="10" style="border: 0; margin: 0 auto 30px auto; width: 100%;">
+                    <tr style="font-family: Arial; color: #000; ">
+                        <td style=" text-align: left;font-size:  7.5pt; border-top: 1px solid #D1D1D1; border-bottom: 1px solid #D1D1D1;">Credence Risk Score</td>
+                        <td style=" text-align: right;font-size: 7.5pt; border-top: 1px solid #D1D1D1; border-bottom: 1px solid #D1D1D1;"><%= dataObj.risk_score %>, <%= dataObj.explanation %></td>
+                    </tr>
+                    <tr style="font-family: Arial; color: #000; ">
+                        <td style=" border-bottom: 1px solid #D1D1D1; text-align: left;font-size:  7.5pt; ">Company Status</td>
+                        <td style=" border-bottom: 1px solid #D1D1D1; text-align: right;font-size: 7.5pt; "><%= dataObj.company_status %></td>
+                    </tr>
+                   
+                </table>
+    
+                <table  cellspacing="0" cellpadding="10" style="border: 0; margin: 50px auto 50px auto; width: 100%;">
+                    <tr style="font-family: Arial;  color: #000; ">
+                        <td style=" text-align: left;font-size:  7.5pt; border-top: 1px solid #D1D1D1; border-bottom: 1px solid #D1D1D1;" ">Bank User Name</td>
+                        <td style=" text-align: right;font-size: 7.5pt;  border-top: 1px solid #D1D1D1; border-bottom: 1px solid #D1D1D1;""><%= username %></td>
+                    </tr>
+                    <tr style="font-family: Arial; color: #000; ">
+                        <td style=" border-bottom: 1px solid #D1D1D1; text-align: left;font-size:  7.5pt; ">Delivered On</td>
+                        <td style=" border-bottom: 1px solid #D1D1D1; text-align: right;font-size: 7.5pt; "><%=  moment().format('DD/MM/YYYY') %></td>
+                    </tr>
+                </table>
+    
+                <table  cellspacing="0" cellpadding="10" style="border: 0; margin: 0 auto; width: 100%;">
+                    <tr style="font-family: Arial; font-size: 7.5pt; color: #000;">
+                        <td style="font-weight: 200;">Private & Confidential:</td>
+                    </tr>
+                    <tr style="font-family: Arial; font-size: 6pt; color: #999999;">
+                        <td style="text-align: justify;"> 
+                            This report is provided on an “as is” and “as available” basis and without warranties of any kind, either express of implied. This report is not intended to be used as the sole basis for any decision making and is based upon data and information which is sourced from third parties and variety of other sources which Credence/Interlinkages limited does not control and the information has not been verified unless otherwise indicated in this report. While Credence/Interlinkages limited endeavors to maintain the quality of this information, it makes no representations or warranties regarding the accuracy and/or completeness of the content or of the result obtained from using it and it disclaims all liability, whether in contract, tort (including negligence), for breach of statutory duty, or under any indemnity or otherwise, for any indirect or consequential loss arising out of the use of this report. This report is intended to be used solely by the recipient who has received it  from Credence/Interlinkages limited and may not be shared or reproduced either in part or full without the written consent of Credence/Interlinkages limited.
+                        </td>
+                    </tr>
+                </table>
+                <!-- <table  cellspacing="0" cellpadding="10" style="border: 0; margin: 0 auto 30px auto; width: 100%;  ">
+                    <tr style="font-family: Arial; font-size: 14px; color: #000; ">
+                        <td style="text-align: left;">For: Al-Arafah Islami Bank</td>
+                        <td style="text-align: center;">05-Apr-22</td>
+                        <td style="text-align: center;">1</td>
+                    </tr>
+                </table> -->
+    
+            </td>
+        </tr>
+    </table>
+    <div style="page-break-after: always;"></div>
+    <table cellspacing="0" cellpadding="0" style="border: 0;width: 100%;margin: 0 auto;">
+        
+        <tr>
+            <td style="font-family: Arial; padding: 8px 15px 8px 0; background-color: #FFF; color: #FF5000; font-weight: bold; font-size:  9pt; margin-bottom: 15px;border-bottom: 2px solid #D1D1D1;">
+                Credence Risk Score
+            </td>
+        </tr>
+        <tr>
+            <td style="font-family: Arial; ">
+                <table width="100%" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td style="border-bottom: 1px solid #D1D1D1; padding: 5px 0; width: 100px; font-size:  7.5pt;">Risk Score</td>
+                        <td style="border-bottom: 1px solid #D1D1D1; padding: 5px 0;font-size: 7.5pt;">
+                            <%= dataObj.risk_score %>
+                        </td>
+                    </tr>
+                    <tr>
+                    <td style="border-bottom: 1px solid #D1D1D1; padding: 5px 0; width: 100px;font-size:  7.5pt;">Explanation</td>
+                    <td style="border-bottom: 1px solid #D1D1D1; padding: 5px 0;font-size: 7.5pt;">
+                        <%= dataObj.explanation %>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="border-bottom: 1px solid #D1D1D1; padding: 5px 0; width: 100px;font-size:  7.5pt;">Comment on Risk Score</td>
+                    <td style="border-bottom: 1px solid #D1D1D1; padding: 5px 0;font-size: 7.5pt;">
+                        <%= dataObj.comment_on_risk_score %>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="border-bottom: 1px solid #D1D1D1; padding: 5px 0; width: 100px;font-size:  7.5pt;">Maximum Credit Limit</td>
+                    <td style="border-bottom: 1px solid #D1D1D1; padding: 5px 0;font-size: 7.5pt;">
+                        <%= dataObj.maximum_credit_limit %>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="border-bottom: 1px solid #D1D1D1; padding: 5px 0; width: 100px;font-size:  7.5pt;">Litigation</td>
+                    <td style="border-bottom: 1px solid #D1D1D1; padding: 5px 0;font-size: 7.5pt;">
+                        <%= dataObj.litigation %>
+                    </td>
+                </tr>
+                <tr>
+                    <td style=" border-bottom: 1px solid #D1D1D1; padding: 5px 0; width: 50px;font-size:  7.5pt;">Comments</td>
+                    <td style="border-bottom: 1px solid #D1D1D1; padding: 5px 0;font-size: 7.5pt;">
+                        <%= dataObj.comment %>
+                    </td>
+                </tr>
+                    
+                </table>
+            </td>
+        </tr>
+    
+    </table>
+    <div style="page-break-after: always;"></div>
+    <%- dataObj.draft_html %>
+    <div style="page-break-after: always;"></div>
+    <%- dataObj.import_html %>
+</body>
+</html>

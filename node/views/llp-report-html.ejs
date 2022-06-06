@@ -1,0 +1,1663 @@
+<% var email_config = Config('application').email %>
+   
+    <div style="padding: 50px 0 20px 0;"></div>
+    
+    <table cellspacing="0" cellpadding="0" style="border: 0;width: 100%;margin: 0 auto;">
+        <tr>
+            <td style="font-family: Arial; font-size: 18.75pt;">
+                <table width="100%" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <%if (details.llp.legal_name) { %>
+                            <td style="font-family: Arial; font-size: 18.75pt; color: #4d3d33; font-weight: 700; margin-bottom: 20px;"><%= details.llp.legal_name  %></td>
+                        <% } %>
+                        <td style="object-position: right;">
+                            <img src="<%= email_config.logo %>" alt="Logo" style="width: 139px;height: 24px; padding-left: 500px;display: none;"/>
+                        </td>
+                    </tr>
+                   
+                </table>
+            </td>
+        </tr>
+        <tr><td style="height: 20px;"></td></tr>
+        <tr>
+            <td style="font-family: Arial; padding: 8px 15px 8px 0; background-color: #FFF; color: #FF5000;border-bottom: 1px solid #d1d1d1; font-weight: bold; font-size: 9pt;">
+                Key Information
+            </td>
+        </tr>
+        <tr>
+            <td style="font-family: Arial; font-size: 7.5pt;">
+                <table width="100%" cellspacing="0" cellpadding="0">
+                    <%if (details.llp.registered_address) { %>
+                    <tr>
+                        <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 5px; width: 170px;">Registered Address</td>
+                        <td style="border-bottom: 1px solid #d1d1d1; padding: 5px;">
+                            <div><%if (details.llp.registered_address.address_line1) { %><%= details.llp.registered_address.address_line1 %><% } %></div>
+                            <div><%if (details.llp.registered_address.address_line2) { %><%= details.llp.registered_address.address_line2 %><% } %></div>
+                            <div><%if (details.llp.registered_address.city) { %><%= details.llp.registered_address.city %><% } %></div>
+                            <div><%if (details.llp.registered_address.pincode) { %><%= details.llp.registered_address.pincode %><% } %></div>
+                            <div><%if (details.llp.registered_address.state) { %><%= details.llp.registered_address.state %><% } %></div>
+                        </td>
+                    </tr>
+                    <% } %>
+                    <%if (details.llp.business_address) { %>
+                    <tr>
+                        <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding:5px; width: 170px;">Business Address</td>
+                        <td style="border-bottom: 1px solid #d1d1d1; padding:5px;">
+                            <div><%if (details.llp.business_address.address_line1) { %><%= details.llp.business_address.address_line1 %><% } %></div>
+                            <div><%if (details.llp.business_address.address_line2) { %><%= details.llp.business_address.address_line2 %><% } %></div>
+                            <div><%if (details.llp.business_address.city) { %><%= details.llp.business_address.city %><% } %></div>
+                            <div><%if (details.llp.business_address.pincode) { %><%= details.llp.business_address.pincode %><% } %></div>
+                            <div><%if (details.llp.business_address.state) { %><%= details.llp.business_address.state %><% } %></div>
+                        </td>
+                    </tr>
+                    <% } %>
+                    <%if (details.llp.incorporation_date) { %>
+                    <tr>
+                        <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding:5px; width: 170px;">Incorporation date</td>
+                        <td style="border-bottom: 1px solid #d1d1d1; padding:5px;"><%= new Date(details.llp.incorporation_date).toLocaleDateString("en-US", { year: 'numeric', month: 'long', day: 'numeric' }) %></td>
+                    </tr>
+                    <% } %>
+                    <%if (details.llp.classification) { %>
+                        <tr>
+                            <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding:5px; width: 170px;">Type of Entity</td>
+                            <td style="border-bottom: 1px solid #d1d1d1; padding:5px;"><%= details.llp.classification %></td>
+                        </tr>
+                    <% } %>
+                    <%if (details.llp.website) { %>
+                        <tr>
+                            <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding:5px; width: 170px;">Website</td>
+                            <td style="border-bottom: 1px solid #d1d1d1; padding:5px;"><%= details.llp.website %></td>
+                        </tr>
+                    <% } %>
+                    <%if (details.contact_details.email) { %>
+                        <tr>
+                            <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding:5px; width: 170px;">Email</td>
+                            <td style="border-bottom: 1px solid #d1d1d1; padding:5px;"><%= details.contact_details.email[0].emailId %></td>
+                        </tr>
+                    <% } %>
+                    <%if (details.contact_details.phone && details.contact_details.phone.length>0) { %>
+                        <tr>
+                            <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding:5px; width: 170px;">Phone</td>
+                            <td style="border-bottom: 1px solid #d1d1d1; padding:5px;"><%= details.contact_details.phone[0].phoneNumber %></td>
+                        </tr>
+                    <% } %>
+                    <%if (details.llp.llpin) { %>
+                        <tr>
+                            <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding:5px; width: 170px;">LLPIN</td>
+                            <td style="border-bottom: 1px solid #d1d1d1; padding:5px;"><%= details.llp.llpin %></td>
+                        </tr>
+                    <% } %>
+                    <%if (details.llp.pan) { %>
+                        <tr>
+                            <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding:5px; width: 170px;">PAN</td>
+                            <td style="border-bottom: 1px solid #d1d1d1; padding:5px;"><%= details.llp.pan %></td>
+                        </tr>
+                    <% } %>
+                    <%if (details.llp.total_obligation_of_contribution) { %>
+                        <tr>
+                            <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding:5px; width: 170px;">Total Obligation of
+                                Contribution (INR, million)</td>
+                            <td style="border-bottom: 1px solid #d1d1d1; padding:5px;"><%= (details.llp.total_obligation_of_contribution/1000000).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %></td>
+                        </tr>
+                    <% } %>
+                    <%if (details.llp.total_contribution_received) { %>
+                        <tr>
+                            <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding:5px; width: 170px;">Total Contribution
+                                Received (INR, million)</td>
+                            <td style="border-bottom: 1px solid #d1d1d1; padding:5px;"><%= (details.llp.total_contribution_received/1000000).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %></td>
+                        </tr>
+                    <% } %>
+                    <%if (details.llp.sum_of_charges) { %>
+                        <tr>
+                            <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding:5px; width: 170px;">Sum of Charges (INR, million)</td>
+                            <td style="border-bottom: 1px solid #d1d1d1; padding:5px;"><%= (details.llp.sum_of_charges/1000000).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %></td>
+                        </tr>
+                    <% } %>
+                    <%if (details.llp.efiling_status) { %>
+                        <tr>
+                            <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding:5px; width: 170px;">E-Filing Status</td>
+                            <td style="border-bottom: 1px solid #d1d1d1; padding:5px;"><%= details.llp.efiling_status %></td>
+                        </tr>
+                    <% } %>
+                    <%if (details.llp.last_annual_returns_filed_date) { %>
+                        <tr>
+                            <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding:5px; width: 170px;">FYED for which Annual
+                                Report Filed
+                                </td>
+                            <td style="border-bottom: 1px solid #d1d1d1; padding:5px;"><%= new Date(details.llp.last_annual_returns_filed_date).toLocaleDateString("en-US", { year: 'numeric', month: 'long', day: 'numeric' }) %></td>
+                        </tr>
+                    <% } %>
+                    <%if (details.llp.lei) { %>
+                        <tr>
+                            <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding:5px; width: 170px;"> LEI
+                                No
+                                </td>
+                            <td style="border-bottom: 1px solid #d1d1d1; padding:5px;"><%= details.llp.lei.number %></td>
+                        </tr>
+                    <% } %>
+                </table>
+            </td>
+        </tr>
+        <tr><td> <div style="page-break-after: always;"></div></td></tr>
+        <tr>
+            <td style="font-family: Arial; padding: 8px 15px 8px 0; background-color: #FFF; color: #FF5000;border-bottom: 1px solid #d1d1d1; font-weight: bold; font-size: 9pt;">
+                About The LLP
+            </td>
+        </tr>
+        <%if (details.description.desc_thousand_char) { %>
+        <tr>
+            <td style="font-family: Arial; border-bottom: 1px solid #d1d1d1; padding: 1px;font-size: 7.5pt;text-align: justify;">
+                <%= details.description.desc_thousand_char %>
+            </td>
+        </tr>
+        <% } %>
+        <tr><td style="height: 20px;"></td></tr>
+        <tr>
+            <td style="font-family: Arial; padding: 8px 15px 8px 0; background-color: #FFF; color: #FF5000;border-bottom: 1px solid #d1d1d1; font-weight: bold; font-size: 9pt;">
+                Industry And Segment(s)
+            </td>
+        </tr>
+        <tr>
+            <td style="font-family: Arial; font-size: 7.5pt;text-align: justify;">
+                <table width="100%" cellspacing="0" cellpadding="0">
+                    <%if (details.industry_segments) { %>
+                    <tr>
+                        <td style="border-bottom: 1px solid #d1d1d1; padding: 1px; width: 170px;font-size: 7.5pt;"><%= details.industry_segments[0].industry %></td>
+                        <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;font-size: 7.5pt;">
+                            <%= details.industry_segments[0].segments[0] %>
+                        </td>
+                    </tr>
+                    <% } %>
+                   
+                </table>
+            </td>
+        </tr>
+        <!-- <tr><td> <div style="page-break-after: always;"></div></td></tr> -->
+        <tr><td style="height: 20px;"></td></tr>
+        <tr>
+            <td style="font-family: Arial; padding: 8px 15px 8px 0; background-color: #FFF; color: #FF5000;border-bottom: 1px solid #d1d1d1; font-weight: bold; font-size: 9pt;">
+                Principal Business Activities  <%if (details.principal_business_activities && details.principal_business_activities.length>0) { %><%= details.principal_business_activities[0].year %><% } %>
+            </td>
+        </tr>
+        <%if (details.principal_business_activities && details.principal_business_activities.length>0) { %>
+        <tr>
+            <td style="font-family: Arial; font-size: 7.5pt;text-align: justify;">
+                <table width="100%" cellspacing="0" cellpadding="0">
+                    <%if (details.principal_business_activities) { %> 
+                    <tr>
+                        <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px; width: 170px;">Business Classification</td>
+                        <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px;">
+                            Description of Business Activity
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="border-bottom: 1px solid #d1d1d1; padding: 1px; width: 170px;"><%= details.principal_business_activities[0].business_classification %></td>
+                        <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;">
+                            <%= details.principal_business_activities[0].principal_business_activities %>
+                        </td>
+                    </tr>
+                    <% } %>
+                   
+                </table>
+            </td>
+        </tr>
+        <% }else{ %> 
+            <tr>
+                <td style="border-bottom: 1px solid #d1d1d1; padding: 1px; font-size: 7.5pt;text-align: justify;">                 
+                    There is no Principal Business Activities              
+                </td>
+            </tr>
+        <% } %>
+        <!-- <tr><td> <div style="page-break-after: always;"></div></td></tr> -->
+        <tr><td style="height: 20px;"></td></tr>
+        <tr>
+            <td style="font-family: Arial; padding: 8px 15px 8px 0; background-color: #FFF; color: #FF5000;border-bottom: 1px solid #d1d1d1; font-weight: bold; font-size: 9pt;">
+                Name History
+            </td>
+        </tr>
+        <%if (details.name_history.length>0) { %>
+
+            
+            <tr>
+                <td style="font-family: Arial; font-size: 7.5pt;text-align: left;">
+                    <table width="100%" cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td style="font-family: Arial;font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px; width: 170px;">Main Activity
+                                    Name</td>
+                                <td style="font-family: Arial;font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px;">
+                                    Till Date
+                                </td>
+                            </tr>
+                            <%for(var j=0; j<details.name_history.length; j++) {  %>
+                                <tr>
+                                    <td style="font-family: Arial;border-bottom: 1px solid #d1d1d1; padding: 1px; width: 170px;"><%= details.name_history[j].name %></td>
+                                    <td style="font-family: Arial;border-bottom: 1px solid #d1d1d1; padding: 1px;">
+                                        <%= new Date(details.name_history[j].date).toLocaleDateString("en-US", { year: 'numeric', month: 'long', day: 'numeric' }) %>
+                                    </td>
+                                </tr>
+                            <% } %>
+                        
+                    </table>
+                </td>
+            </tr>
+
+        <% }else{ %> 
+            <tr>
+                <td style="font-family: Arial;border-bottom: 1px solid #d1d1d1; padding: 8px 15px 8px 0; font-size: 7.5pt;text-align: justify;">                 
+                    This corporate has not had any name change as per our records.              
+                </td>
+            </tr>
+        <% } %>
+    </table>
+
+    <!-- table no 1 -->
+    <tr><td> <div style="page-break-after: always;"></div></td></tr>
+
+    <!-- table no 2 -->
+    <table cellspacing="0" cellpadding="0" style="border: 0;width: 100%;margin: 0 auto;">
+      
+        <tr>
+            <td style="font-family: Arial; padding: 8px 15px 8px 0; background-color: #FFF; color: #FF5000;border-bottom: 1px solid #d1d1d1; font-weight: bold; font-size: 9pt;">
+                Statement of Accounts
+            </td>
+        </tr>
+        <%if (details.financials1.length>0) { %>
+        <tr>
+            <td style="font-family: Arial; font-size: 7.5pt;">
+                <table width="100%" cellspacing="0" cellpadding="0">
+                    <tr style="background-color: #f7f7f7;">
+                        <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px; width: 350px;">Statement of Assets and Liabilities (INR, million)</td>
+                        <%if (details.financials1.length>0) { %>
+                            <%for(var j=0; j<3; j++) {  %>
+                                <td style="border-bottom: 1px solid #D1D1D1; padding: 3px;font-size: 6pt;"><%= new Date(details.financials1[j].year).toLocaleDateString("en-US", { year: 'numeric', month: 'long', day: 'numeric' }) %></td>
+                                
+                            <% } %>
+                        <% } %>
+                    </tr>
+                    
+                    <tr>
+                        <td colspan="4" style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px; width: 350px;">Contribution and Liabilities</td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px; ">Partner's Funds</td>
+                    </tr>
+                    <tr>
+                        <td style="border-bottom: 1px solid #d1d1d1; padding: 1px; ">Contribution Received</td>
+                        <%if (details.financials1.length>0) { %>
+                            <%for(var j=0; j<3; j++) {  %>
+                                <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= (details.financials1[j].statement_of_assets_and_liabilities.liabilities.contribution_received/1000000).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %></td>
+                                
+                            <% } %>
+                        <% } %>
+                    </tr>
+                    <tr>
+                        <td style="border-bottom: 1px solid #d1d1d1; padding: 1px; ">Reserves and Surplus</td>
+                        <%if (details.financials1.length>0) { %>
+                            <%for(var j=0; j<3; j++) {  %>
+                                <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= (details.financials1[j].statement_of_assets_and_liabilities.liabilities.reserves_and_surplus/1000000).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %></td>
+                                
+                            <% } %>
+                        <% } %>
+                    </tr>
+                    <tr>
+                        <td colspan="4" style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px; ">Liabilities</td>
+                    </tr>
+                    <tr>
+                        <td style="border-bottom: 1px solid #d1d1d1; padding: 1px; ">Secured Loans</td>
+                        <%if (details.financials1.length>0) { %>
+                            <%for(var j=0; j<3; j++) {  %>
+                                <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= (details.financials1[j].statement_of_assets_and_liabilities.liabilities.secured_loan/1000000).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %></td>
+                                
+                            <% } %>
+                        <% } %>
+                    </tr>
+                    <tr>
+                        <td style="border-bottom: 1px solid #d1d1d1; padding: 1px; ">Unsecured Loans</td>
+                        <%if (details.financials1.length>0) { %>
+                            <%for(var j=0; j<3; j++) {  %>
+                                <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= (details.financials1[j].statement_of_assets_and_liabilities.liabilities.unsecured_loan/1000000).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %></td>
+                                
+                            <% } %>
+                        <% } %>
+                    </tr>
+                    <tr>
+                        <td style="border-bottom: 1px solid #d1d1d1; padding: 1px; ">Short Term Borrowing</td>
+                        <%if (details.financials1.length>0) { %>
+                            <%for(var j=0; j<3; j++) {  %>
+                                <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= (details.financials1[j].statement_of_assets_and_liabilities.liabilities.short_term_borrowing/1000000).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %></td>
+                                
+                            <% } %>
+                        <% } %>
+                    </tr>
+                    <tr>
+                        <td style="border-bottom: 1px solid #d1d1d1; padding: 1px; ">Creditor / Trade Payables - Advance from Customers</td>
+                        <%if (details.financials1.length>0) { %>
+                            <%for(var j=0; j<3; j++) {  %>
+                                <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= (details.financials1[j].statement_of_assets_and_liabilities.liabilities.trade_payables/1000000).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %></td>
+                                
+                            <% } %>
+                        <% } %>
+                    </tr>
+                    <tr>
+                        <td style="border-bottom: 1px solid #d1d1d1; padding: 1px; ">Other Liabilities</td>
+                        <%if (details.financials1.length>0) { %>
+                            <%for(var j=0; j<3; j++) {  %>
+                                <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= (details.financials1[j].statement_of_assets_and_liabilities.liabilities.other_liabilities/1000000).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %></td>
+                                
+                            <% } %>
+                        <% } %>
+                    </tr>
+                    <tr>
+                        <td colspan="4" style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px; ">Provisions</td>
+                    </tr>
+                    <tr>
+                        <td style="border-bottom: 1px solid #d1d1d1; padding: 1px; ">for Taxation</td>
+                        <%if (details.financials1.length>0) { %>
+                            <%for(var j=0; j<3; j++) {  %>
+                                <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= (details.financials1[j].statement_of_assets_and_liabilities.liabilities.provisions_for_taxation/1000000).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %></td>
+                                
+                            <% } %>
+                        <% } %>
+                    </tr>
+                    <tr>
+                        <td style="border-bottom: 1px solid #d1d1d1; padding: 1px; ">for Contingencies</td>
+                        <%if (details.financials1.length>0) { %>
+                            <%for(var j=0; j<3; j++) {  %>
+                                <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= (details.financials1[j].statement_of_assets_and_liabilities.liabilities.provisions_for_contingencies/1000000).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %></td>
+                                
+                            <% } %>
+                        <% } %>
+                    </tr>
+                    <tr>
+                        <td style="border-bottom: 1px solid #d1d1d1; padding: 1px; ">for Insurance</td>
+                        <%if (details.financials1.length>0) { %>
+                            <%for(var j=0; j<3; j++) {  %>
+                                <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= (details.financials1[j].statement_of_assets_and_liabilities.liabilities.provisions_for_insurance/1000000).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %></td>
+                                
+                            <% } %>
+                        <% } %>
+                    </tr>
+                    <tr>
+                        <td style="border-bottom: 1px solid #d1d1d1; padding: 1px; ">Other Provisions</td>
+                        <%if (details.financials1.length>0) { %>
+                            <%for(var j=0; j<3; j++) {  %>
+                                <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= (details.financials1[j].statement_of_assets_and_liabilities.liabilities.other_provisions/1000000).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %></td>
+                                
+                            <% } %>
+                        <% } %>
+                    </tr>
+                    <tr>
+                        <td style="font-weight:bold; border-bottom: 1px solid #d1d1d1; padding: 1px; ">Total</td>
+                        <%if (details.financials1.length>0) { %>
+                            <%for(var j=0; j<3; j++) {  %>
+                                <td  style="font-weight:bold; border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= details.financials1[j].statement_of_assets_and_liabilities.subTotals.given_liabilities_total!=null?(details.financials1[j].statement_of_assets_and_liabilities.subTotals.given_liabilities_total/1000000).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","):"" %></td>
+                                
+                            <% } %>
+                        <% } %>
+                       
+                    </tr>
+                    <tr>
+                        <td colspan="4" style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px; width: 350px;">Assets</td>
+                    </tr>
+                    <tr>
+                        <td style="border-bottom: 1px solid #d1d1d1; padding: 1px; ">Gross Fixed Assets</td>
+                        <%if (details.financials1.length>0) { %>
+                            <%for(var j=0; j<3; j++) {  %>
+                                <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= (details.financials1[j].statement_of_assets_and_liabilities.assets.gross_fixed_assets/1000000).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %></td>
+                                
+                            <% } %>
+                        <% } %>
+                    </tr>
+                    <tr>
+                        <td style="border-bottom: 1px solid #d1d1d1; padding: 1px; ">Less: Depreciation and Amortization</td>
+                        <%if (details.financials1.length>0) { %>
+                            <%for(var j=0; j<3; j++) {  %>
+                                <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= (details.financials1[j].statement_of_assets_and_liabilities.assets.depreciation_and_amortization/1000000).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %></td>
+                                
+                            <% } %>
+                        <% } %>
+                    </tr>
+                    <tr>
+                        <td style="border-bottom: 1px solid #d1d1d1; padding: 1px; ">Net Fixed Assets</td>
+                        <%if (details.financials1.length>0) { %>
+                            <%for(var j=0; j<3; j++) {  %>
+                                <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= (details.financials1[j].statement_of_assets_and_liabilities.assets.net_fixed_assets/1000000).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %></td>
+                                
+                            <% } %>
+                        <% } %>
+                    </tr>
+                    <tr>
+                        <td style="border-bottom: 1px solid #d1d1d1; padding: 1px; ">Investments</td>
+                        <%if (details.financials1.length>0) { %>
+                            <%for(var j=0; j<3; j++) {  %>
+                                <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= (details.financials1[j].statement_of_assets_and_liabilities.assets.investments/1000000).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %></td>
+                                
+                            <% } %>
+                        <% } %>
+                    </tr>
+                    <tr>
+                        <td style="border-bottom: 1px solid #d1d1d1; padding: 1px; ">Loans and Advances</td>
+                        <%if (details.financials1.length>0) { %>
+                            <%for(var j=0; j<3; j++) {  %>
+                                <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= (details.financials1[j].statement_of_assets_and_liabilities.assets.loans_and_advances/1000000).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %></td>
+                                
+                            <% } %>
+                        <% } %>
+                    </tr>
+                    <tr>
+                        <td style="border-bottom: 1px solid #d1d1d1; padding: 1px; ">Inventories</td>
+                        <%if (details.financials1.length>0) { %>
+                            <%for(var j=0; j<3; j++) {  %>
+                                <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= (details.financials1[j].statement_of_assets_and_liabilities.assets.inventories/1000000).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %></td>
+                                
+                            <% } %>
+                        <% } %>
+                    </tr>
+                    <tr>
+                        <td style="border-bottom: 1px solid #d1d1d1; padding: 1px; ">Debtors / Trade Receivables</td>
+                        <%if (details.financials1.length>0) { %>
+                            <%for(var j=0; j<3; j++) {  %>
+                                <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= (details.financials1[j].statement_of_assets_and_liabilities.assets.trade_receivables/1000000).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %></td>
+                                
+                            <% } %>
+                        <% } %>
+                    </tr>
+                    <tr>
+                        <td style="border-bottom: 1px solid #d1d1d1; padding: 1px; ">Cash and Cash Equivalents </td>
+                        <%if (details.financials1.length>0) { %>
+                            <%for(var j=0; j<3; j++) {  %>
+                                <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= (details.financials1[j].statement_of_assets_and_liabilities.assets.cash_and_cash_equivalents/1000000).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %></td>
+                                
+                            <% } %>
+                        <% } %>
+                    </tr>
+                    <tr>
+                        <td style="border-bottom: 1px solid #d1d1d1; padding: 1px; ">Other Assets </td>
+                        <%if (details.financials1.length>0) { %>
+                            <%for(var j=0; j<3; j++) {  %>
+                                <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= (details.financials1[j].statement_of_assets_and_liabilities.assets.other_assets/1000000).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %></td>
+                                
+                            <% } %>
+                        <% } %>
+                    </tr>
+                    <tr>
+                        <td style="font-weight:bold; border-bottom: 1px solid #d1d1d1; padding: 1px; ">Total</td>
+                        <%if (details.financials1.length>0) { %>
+                            <%for(var j=0; j<3; j++) {  %>
+                                <td  style="font-weight:bold; border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= details.financials1[j].statement_of_assets_and_liabilities.subTotals.given_assets_total!=null?(details.financials1[j].statement_of_assets_and_liabilities.subTotals.given_assets_total/1000000).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","):"" %></td>
+                                
+                            <% } %>
+                        <% } %>
+                       
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr><td> <div style="page-break-after: always;"></div></td></tr>
+        <tr>
+            <td style="font-family: Arial; font-size: 7.5pt;">
+                <table width="100%" cellspacing="0" cellpadding="0">
+                    <tr style="background-color: #f7f7f7;">
+                        <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px; width: 350px;">Statement of Income and Expenditure (INR, million)</td>
+                        <%if (details.financials1.length>0) { %>
+                            <%for(var j=0; j<3; j++) {  %>
+                                <td style="border-bottom: 1px solid #D1D1D1; padding: 3px;font-size: 6pt;"><%= new Date(details.financials1[j].year).toLocaleDateString("en-US", { year: 'numeric', month: 'long', day: 'numeric' }) %></td>
+                                
+                            <% } %>
+                        <% } %>
+                    </tr>
+                   
+                    <tr>
+                        <td colspan="4" style=" border-bottom: 1px solid #d1d1d1; padding: 1px;">
+                            * Total operating revenue net of taxes.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="border-bottom: 1px solid #d1d1d1; padding: 1px; ">Net Revenue * </td>
+                        <%if (details.financials1.length>0) { %>
+                            <%for(var j=0; j<3; j++) {  %>
+                                <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= details.financials1[j].statement_of_income_and_expenditure.lineItems.net_revenue!=null?(details.financials1[j].statement_of_income_and_expenditure.lineItems.net_revenue/1000000).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","):"-" %></td>
+                                
+                            <% } %>
+                        <% } %>
+                    </tr>
+                    <tr>
+                        <td colspan="4" style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px; ">Operating Cost</td>
+                    </tr>
+                    <tr>
+                        <td style="border-bottom: 1px solid #d1d1d1; padding: 1px; ">Cost of Materials Consumed</td>
+                        <%if (details.financials1.length>0) { %>
+                            <%for(var j=0; j<3; j++) {  %>
+                                <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= details.financials1[j].statement_of_income_and_expenditure.lineItems.total_cost_of_materials_consumed!=null?(details.financials1[j].statement_of_income_and_expenditure.lineItems.total_cost_of_materials_consumed/1000000).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","):"-" %></td>
+                                
+                            <% } %>
+                        <% } %>
+                    </tr>
+                    <tr>
+                        <td style="border-bottom: 1px solid #d1d1d1; padding: 1px; ">Purchases of Stock-in-trade</td>
+                        <%if (details.financials1.length>0) { %>
+                            <%for(var j=0; j<3; j++) {  %>
+                                <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= details.financials1[j].statement_of_income_and_expenditure.lineItems.total_purchases_of_stock_in_trade!=null?(details.financials1[j].statement_of_income_and_expenditure.lineItems.total_purchases_of_stock_in_trade/1000000).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","):"-" %></td>
+                                
+                            <% } %>
+                        <% } %>
+                    </tr>
+                    <tr>
+                        <td style="border-bottom: 1px solid #d1d1d1; padding: 1px; ">Changes in Inventories / Finished Goods</td>
+                        <%if (details.financials1.length>0) { %>
+                            <%for(var j=0; j<3; j++) {  %>
+                                <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= details.financials1[j].statement_of_income_and_expenditure.lineItems.total_changes_in_inventories_or_finished_goods!=null?(details.financials1[j].statement_of_income_and_expenditure.lineItems.total_changes_in_inventories_or_finished_goods/1000000).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","):"-" %></td>
+                                
+                            <% } %>
+                        <% } %>
+                    </tr>
+                    <tr>
+                        <td style="border-bottom: 1px solid #d1d1d1; padding: 1px; ">Employee Benefit Expense</td>
+                        <%if (details.financials1.length>0) { %>
+                            <%for(var j=0; j<3; j++) {  %>
+                                <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= details.financials1[j].statement_of_income_and_expenditure.lineItems.total_employee_benefit_expense!=null?(details.financials1[j].statement_of_income_and_expenditure.lineItems.total_employee_benefit_expense/1000000).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","):"-" %></td>
+                                
+                            <% } %>
+                        <% } %>
+                    </tr>
+                    <tr>
+                        <td style="border-bottom: 1px solid #d1d1d1; padding: 1px; ">Other Expenses</td>
+                        <%if (details.financials1.length>0) { %>
+                            <%for(var j=0; j<3; j++) {  %>
+                                <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= details.financials1[j].statement_of_income_and_expenditure.lineItems.total_other_expenses!=null?(details.financials1[j].statement_of_income_and_expenditure.lineItems.total_other_expenses/1000000).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","):"" %></td>
+                                
+                            <% } %>
+                        <% } %>
+                    </tr>
+                    <tr>
+                        <td style="font-weight:bold; border-bottom: 1px solid #d1d1d1; padding: 1px; ">Total Operating Cost</td>
+                        <%if (details.financials1.length>=1) { %>
+                            <td style="font-weight:bold; border-bottom: 1px solid #d1d1d1; padding: 1px;">
+                                <%= (((details.financials1[0].statement_of_income_and_expenditure.lineItems.net_revenue+
+                                details.financials1[0].statement_of_income_and_expenditure.lineItems.total_cost_of_materials_consumed+
+                                details.financials1[0].statement_of_income_and_expenditure.lineItems.total_purchases_of_stock_in_trade+
+                                details.financials1[0].statement_of_income_and_expenditure.lineItems.total_changes_in_inventories_or_finished_goods+
+                                details.financials1[0].statement_of_income_and_expenditure.lineItems.total_employee_benefit_expense+
+                                details.financials1[0].statement_of_income_and_expenditure.lineItems.total_other_expenses
+                                )/1000000).toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %>
+                            </td>
+                        <% } %>
+                        <%if (details.financials1.length>=2) { %>
+                            <td style="font-weight:bold; border-bottom: 1px solid #d1d1d1; padding: 1px;">
+                                <%= (((details.financials1[1].statement_of_income_and_expenditure.lineItems.net_revenue+
+                                details.financials1[1].statement_of_income_and_expenditure.lineItems.total_cost_of_materials_consumed+
+                                details.financials1[1].statement_of_income_and_expenditure.lineItems.total_purchases_of_stock_in_trade+
+                                details.financials1[1].statement_of_income_and_expenditure.lineItems.total_changes_in_inventories_or_finished_goods+
+                                details.financials1[1].statement_of_income_and_expenditure.lineItems.total_employee_benefit_expense+
+                                details.financials1[1].statement_of_income_and_expenditure.lineItems.total_other_expenses
+                                )/1000000).toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %>
+                            </td>
+                        <% } %>
+                        <%if (details.financials1.length>=3) { %>
+                            <td style="font-weight:bold; border-bottom: 1px solid #d1d1d1; padding: 1px;">
+                                <%= (((details.financials1[2].statement_of_income_and_expenditure.lineItems.net_revenue+
+                                details.financials1[2].statement_of_income_and_expenditure.lineItems.total_cost_of_materials_consumed+
+                                details.financials1[2].statement_of_income_and_expenditure.lineItems.total_purchases_of_stock_in_trade+
+                                details.financials1[2].statement_of_income_and_expenditure.lineItems.total_changes_in_inventories_or_finished_goods+
+                                details.financials1[2].statement_of_income_and_expenditure.lineItems.total_employee_benefit_expense+
+                                details.financials1[2].statement_of_income_and_expenditure.lineItems.total_other_expenses
+                                )/1000000).toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %>
+                            </td>
+                        <% } %>
+                    </tr>
+                    <tr>
+                        <td style="border-bottom: 1px solid #d1d1d1; padding: 1px; ">Operating Profit ( EBITDA )</td>
+                        <%if (details.financials1.length>0) { %>
+                            <%for(var j=0; j<3; j++) {  %>
+                                <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= details.financials1[j].statement_of_income_and_expenditure.lineItems.operating_profit!=null?(details.financials1[j].statement_of_income_and_expenditure.lineItems.operating_profit/1000000).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","):"-" %></td>
+                                
+                            <% } %>
+                        <% } %>
+                    </tr>
+                    <tr>
+                        <td style="border-bottom: 1px solid #d1d1d1; padding: 1px; ">Other Income</td>
+                        <%if (details.financials1.length>0) { %>
+                            <%for(var j=0; j<3; j++) {  %>
+                                <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= details.financials1[j].statement_of_income_and_expenditure.lineItems.other_income!=null?(details.financials1[j].statement_of_income_and_expenditure.lineItems.other_income/1000000).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","):"-" %></td>
+                                
+                            <% } %>
+                        <% } %>
+                    </tr>
+                    <tr>
+                        <td style="border-bottom: 1px solid #d1d1d1; padding: 1px; ">Depreciation and Amortization Expense</td>
+                        <%if (details.financials1.length>0) { %>
+                            <%for(var j=0; j<3; j++) {  %>
+                                <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= details.financials1[j].statement_of_income_and_expenditure.lineItems.depreciation!=null?(details.financials1[j].statement_of_income_and_expenditure.lineItems.depreciation/1000000).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","):"-" %></td>
+                                
+                            <% } %>
+                        <% } %>
+                    </tr>
+                    <tr>
+                        <td style="border-bottom: 1px solid #d1d1d1; padding: 1px; ">Profit Before Interest and Tax</td>
+                        <%if (details.financials1.length>0) { %>
+                            <%for(var j=0; j<3; j++) {  %>
+                                <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= details.financials1[j].statement_of_income_and_expenditure.lineItems.profit_before_interest_and_tax!=null?(details.financials1[j].statement_of_income_and_expenditure.lineItems.profit_before_interest_and_tax/1000000).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","):"-" %></td>
+                                
+                            <% } %>
+                        <% } %>
+                    </tr>
+                    <tr>
+                        <td style="border-bottom: 1px solid #d1d1d1; padding: 1px; ">Finance Costs</td>
+                        <%if (details.financials1.length>0) { %>
+                            <%for(var j=0; j<3; j++) {  %>
+                                <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= details.financials1[j].statement_of_income_and_expenditure.lineItems.interest!=null?(details.financials1[j].statement_of_income_and_expenditure.lineItems.interest/1000000).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","):"-" %></td>
+                                
+                            <% } %>
+                        <% } %>
+                    </tr>
+                    <tr>
+                        <td style="border-bottom: 1px solid #d1d1d1; padding: 1px; ">Profit Before Tax and Exceptional Items Before Tax </td>
+                        <%if (details.financials1.length>0) { %>
+                            <%for(var j=0; j<3; j++) {  %>
+                                <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= details.financials1[j].statement_of_income_and_expenditure.lineItems.profit_before_tax_and_exceptional_items_before_tax!=null?(details.financials1[j].statement_of_income_and_expenditure.lineItems.profit_before_tax_and_exceptional_items_before_tax/1000000).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","):"-" %></td>
+                                
+                            <% } %>
+                        <% } %>
+                    </tr>
+                    <tr>
+                        <td style="border-bottom: 1px solid #d1d1d1; padding: 1px; ">Exceptional Items Before Tax </td>
+                        <%if (details.financials1.length>0) { %>
+                            <%for(var j=0; j<3; j++) {  %>
+                                <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= details.financials1[j].statement_of_income_and_expenditure.lineItems.exceptional_items_before_tax!=null?(details.financials1[j].statement_of_income_and_expenditure.lineItems.exceptional_items_before_tax/1000000).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","):"-" %></td>
+                                
+                            <% } %>
+                        <% } %>
+                    </tr>
+                    <tr>
+                        <td style="border-bottom: 1px solid #d1d1d1; padding: 1px; ">Profit Before Tax</td>
+                        <%if (details.financials1.length>0) { %>
+                            <%for(var j=0; j<3; j++) {  %>
+                                <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= details.financials1[j].statement_of_income_and_expenditure.lineItems.profit_before_tax!=null?(details.financials1[j].statement_of_income_and_expenditure.lineItems.profit_before_tax/1000000).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","):"-" %></td>
+                                
+                            <% } %>
+                        <% } %>
+                    </tr>
+                    <tr>
+                        <td style="border-bottom: 1px solid #d1d1d1; padding: 1px; ">Income Tax</td>
+                        <%if (details.financials1.length>0) { %>
+                            <%for(var j=0; j<3; j++) {  %>
+                                <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= details.financials1[j].statement_of_income_and_expenditure.lineItems.income_tax!=null?(details.financials1[j].statement_of_income_and_expenditure.lineItems.income_tax/1000000).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","):"-" %></td>
+                                
+                            <% } %>
+                        <% } %>
+                    </tr>
+                    <tr>
+                        <td style="border-bottom: 1px solid #d1d1d1; padding: 1px; ">Profit for the Period from Continuing Operations</td>
+                        <%if (details.financials1.length>0) { %>
+                            <%for(var j=0; j<3; j++) {  %>
+                                <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= details.financials1[j].statement_of_income_and_expenditure.lineItems.profit_for_period_from_continuing_operations!=null?(details.financials1[j].statement_of_income_and_expenditure.lineItems.profit_for_period_from_continuing_operations/1000000).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","):"-" %></td>
+                                
+                            <% } %>
+                        <% } %>
+                    </tr>
+                    <tr>
+                        <td style="border-bottom: 1px solid #d1d1d1; padding: 1px; ">Profit from Discontinuing Operations After Tax</td>
+                        <%if (details.financials1.length>0) { %>
+                            <%for(var j=0; j<3; j++) {  %>
+                                <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= details.financials1[j].statement_of_income_and_expenditure.lineItems.profit_from_discontinuing_operation_after_tax!=null?(details.financials1[j].statement_of_income_and_expenditure.lineItems.profit_from_discontinuing_operation_after_tax/1000000).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","):"-" %></td>
+                                
+                            <% } %>
+                        <% } %>
+                    </tr>
+                    <tr>
+                        <td style="border-bottom: 1px solid #d1d1d1; padding: 1px; ">Minority Interest and Profit from Associates and Joint Ventures</td>
+                        <%if (details.financials1.length>0) { %>
+                            <%for(var j=0; j<3; j++) {  %>
+                                <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= details.financials1[j].statement_of_income_and_expenditure.lineItems.minority_interest_and_profit_from_associates_and_joint_ventures!=null?(details.financials1[j].statement_of_income_and_expenditure.lineItems.minority_interest_and_profit_from_associates_and_joint_ventures/1000000).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","):"-" %></td>
+                                
+                            <% } %>
+                        <% } %>
+                    </tr>
+                    <tr>
+                        <td style="font-weight:bold; border-bottom: 1px solid #d1d1d1; padding: 1px; ">Profit for the Period</td>
+                        <%if (details.financials1.length>=1) { %>
+                            <td style="font-weight:bold; border-bottom: 1px solid #d1d1d1; padding: 1px;">
+                                <%= (details.financials1[0].statement_of_income_and_expenditure.lineItems.profit_after_tax
+                                /1000000).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %>
+                            </td>
+                        <% } %>
+                        <%if (details.financials1.length>=2) { %>
+                            <td style="font-weight:bold; border-bottom: 1px solid #d1d1d1; padding: 1px;">
+                                <%= (details.financials1[1].statement_of_income_and_expenditure.lineItems.profit_after_tax
+                                /1000000).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %>
+                            </td>
+                        <% } %>
+                        <%if (details.financials1.length>=3) { %>
+                            <td style="font-weight:bold; border-bottom: 1px solid #d1d1d1; padding: 1px;">
+                                <%= (details.financials1[2].statement_of_income_and_expenditure.lineItems.profit_after_tax
+                                /1000000).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %>
+                            </td>
+                        <% } %>
+                    </tr>
+                   
+                </table>
+            </td>
+        </tr>
+        <!-- <tr><td> <div style="page-break-after: always;"></div></td></tr> -->
+        <tr>
+            <td style="height: 310px;"></td>
+        </tr>
+        <tr>
+            <td style="font-family: Arial; font-size: 7.5pt;">
+                <table width="100%" cellspacing="0" cellpadding="0">
+                    <tr style="background-color: #f7f7f7;">
+                        <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 5px; width: 350px;">Ratios - AOC-4 </td>
+                        <%if (details.financials1.length>0) { %>
+                            <%for(var j=0; j<details.financials1.length && j<3; j++) {  %>
+                                <td style="border-bottom: 1px solid #D1D1D1; padding: 3px;font-size: 6pt;"><%= new Date(details.financials1[j].year).toLocaleDateString("en-US", { year: 'numeric', month: 'long', day: 'numeric' }) %></td>
+                                
+                            <% } %>
+                        <% } %>
+                    </tr>
+                   
+                    <tr>
+                        <td style="border-bottom: 1px solid #d1d1d1; padding: 5px; ">Revenue Growth (%) </td>
+                        <td style="border-bottom: 1px solid #d1d1d1; padding: 5px;">
+                            <%if (details.financials.length>3) { %>
+                                <%= (((details.financials[2].statement_of_income_and_expenditure.lineItems.net_revenue/details.financials[3].statement_of_income_and_expenditure.lineItems.net_revenue)-1)*100).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %>
+                            <% } %>
+                        </td>
+                        <td style="border-bottom: 1px solid #d1d1d1; padding: 5px;">
+                            <%if (details.financials.length>2) { %>
+                                <%= (((details.financials[1].statement_of_income_and_expenditure.lineItems.net_revenue/details.financials[2].statement_of_income_and_expenditure.lineItems.net_revenue)-1)*100).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %>
+                            <% } %>
+                        </td>
+                        <td style="border-bottom: 1px solid #d1d1d1; padding: 5px;">
+                            <%if (details.financials.length>1) { %>
+                                <%= (((details.financials[0].statement_of_income_and_expenditure.lineItems.net_revenue/details.financials[1].statement_of_income_and_expenditure.lineItems.net_revenue)-1)*100).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %>
+                            <% } %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="border-bottom: 1px solid #d1d1d1; padding: 5px; ">EBITDA Margin (%) </td>
+                        <%if (details.financials1.length>0) { %>
+                            <%for(var j=0; j<details.financials1.length && j<3; j++) {  %>
+                                <td style="border-bottom: 1px solid #d1d1d1; padding: 5px;"><%= details.financials1[j].statement_of_income_and_expenditure.lineItems.net_revenue!=null && details.financials1[j].statement_of_income_and_expenditure.lineItems.operating_profit!=null?((details.financials1[j].statement_of_income_and_expenditure.lineItems.operating_profit/details.financials1[j].statement_of_income_and_expenditure.lineItems.net_revenue)*100).toFixed(2):"-" %></td>
+                                
+                            <% } %>
+                        <% } %>
+                    </tr>
+                    <tr>
+                        <td style="border-bottom: 1px solid #d1d1d1; padding: 5px; ">Net Margin (%) </td>
+                        <%if (details.financials1.length>0) { %>
+                            <%for(var j=0; j<details.financials1.length && j<3; j++) {  %>
+                                <td style="border-bottom: 1px solid #d1d1d1; padding: 5px;"><%= details.financials1[j].statement_of_income_and_expenditure.lineItems.net_revenue!=null && details.financials1[j].statement_of_income_and_expenditure.lineItems.profit_after_tax!=null?((details.financials1[j].statement_of_income_and_expenditure.lineItems.profit_after_tax/details.financials1[j].statement_of_income_and_expenditure.lineItems.net_revenue)*100).toFixed(2):"-" %></td>
+                                
+                            <% } %>
+                        <% } %>
+                    </tr>
+                    <tr>
+                        <td style="border-bottom: 1px solid #d1d1d1; padding: 5px; ">Return on Equity (%) </td>
+                        <%if (details.financials1.length>0) { %>
+                            <%for(var j=0; j<details.financials1.length && j<3; j++) {  %>
+                                <td style="border-bottom: 1px solid #d1d1d1; padding: 5px;"><%= details.financials1[j].statement_of_assets_and_liabilities.liabilities.contribution_received!=null && details.financials1[j].statement_of_assets_and_liabilities.liabilities.reserves_and_surplus!=null && details.financials1[j].statement_of_income_and_expenditure.lineItems.profit_after_tax!=null?((details.financials1[j].statement_of_income_and_expenditure.lineItems.profit_after_tax/(details.financials1[j].statement_of_assets_and_liabilities.liabilities.contribution_received+details.financials1[j].statement_of_assets_and_liabilities.liabilities.reserves_and_surplus))*100).toFixed(2):"-" %></td>
+                                
+                            <% } %>
+                        <% } %>
+                    </tr>
+                    <!-- <tr>
+                        <td style="border-bottom: 1px solid #d1d1d1; padding: 5px; ">Debt / Equity </td>
+                        <%if (details.financials1.length>0) { %>
+                            <%for(var j=0; j<details.financials1.length && j<3; j++) {  %>
+                                <td style="border-bottom: 1px solid #d1d1d1; padding: 5px;"><%= details.financials1[j].statement_of_assets_and_liabilities.liabilities.contribution_received && details.financials1[j].statement_of_assets_and_liabilities.liabilities.reserves_and_surplus && details.financials1[j].statement_of_assets_and_liabilities.liabilities.long_term_borrowings!=null && details.financials1[j].statement_of_assets_and_liabilities.liabilities.short_term_borrowings!=null?((details.financials1[j].statement_of_assets_and_liabilities.liabilities.long_term_borrowings+details.financials1[j].statement_of_assets_and_liabilities.liabilities.short_term_borrowings)/(details.financials1[j].statement_of_assets_and_liabilities.liabilities.contribution_received+details.financials1[j].statement_of_assets_and_liabilities.liabilities.reserves_and_surplus)).toFixed(2):"-" %></td>
+                                
+                            <% } %>
+                        <% } %>
+                    </tr> -->
+                    <tr>
+                        <td style="border-bottom: 1px solid #d1d1d1; padding: 5px; ">Inventory / Sales (Days)</td>
+                        <%if (details.financials1.length>0) { %>
+                            <%for(var j=0; j<details.financials1.length && j<3; j++) {  %>
+                                <td style="border-bottom: 1px solid #d1d1d1; padding: 5px;"><%= details.financials1[j].statement_of_income_and_expenditure.lineItems.net_revenue!=null && details.financials1[j].statement_of_assets_and_liabilities.assets.inventories!=null?((details.financials1[j].statement_of_assets_and_liabilities.assets.inventories/details.financials1[j].statement_of_income_and_expenditure.lineItems.net_revenue)* 365).toFixed(2):"-" %></td>
+                            <% } %>
+                        <% } %>
+                    </tr>
+                    <tr>
+                        <td style="border-bottom: 1px solid #d1d1d1; padding: 5px; padding-bottom:0; height:20px; ">Debtors / Sales (Days)</td>
+                        <%if (details.financials1.length>0) { %>
+                            <%for(var j=0; j<details.financials1.length && j<3; j++) {  %>
+                                <td style="border-bottom: 1px solid #d1d1d1; padding: 5px; padding-bottom:0; height:20px;"><%= details.financials1[j].statement_of_income_and_expenditure.lineItems.net_revenue!=null && details.financials1[j].statement_of_assets_and_liabilities.assets.trade_receivables!=null?((details.financials1[j].statement_of_assets_and_liabilities.assets.trade_receivables/details.financials1[j].statement_of_income_and_expenditure.lineItems.net_revenue)*365).toFixed():"-" %></td>
+                            <% } %>
+                        <% } %>
+                    </tr>
+                    <tr>
+                        <td style="border-bottom: 1px solid #d1d1d1; padding: 5px; ">Payables / Sales (Days)</td>
+                        <%if (details.financials1.length>0) { %>
+                            <%for(var j=0; j<details.financials1.length && j<3; j++) {  %>
+                                <td style="border-bottom: 1px solid #d1d1d1; padding: 5px;"><%= details.financials1[j].statement_of_income_and_expenditure.lineItems.net_revenue!=null && details.financials1[j].statement_of_assets_and_liabilities.liabilities.trade_payables!=null?((details.financials1[j].statement_of_assets_and_liabilities.liabilities.trade_payables/details.financials1[j].statement_of_income_and_expenditure.lineItems.net_revenue)*365).toFixed():"-" %></td>
+                                
+                            <% } %>
+                        <% } %>
+                    </tr>
+                    <tr>
+                        <td style="border-bottom: 1px solid #d1d1d1; padding: 5px; ">Cash Conversion Cycle (Days)</td>
+                        <%if (details.financials1.length>0) { %>
+                            <%for(var j=0; j<details.financials1.length && j<3; j++) {  %>
+                                <td style="border-bottom: 1px solid #d1d1d1; padding: 5px;"><%= details.financials1[j].statement_of_income_and_expenditure.lineItems.net_revenue!=null && details.financials1[j].statement_of_assets_and_liabilities.liabilities.trade_payables!=null && details.financials1[j].statement_of_assets_and_liabilities.assets.trade_receivables!=null && details.financials1[j].statement_of_assets_and_liabilities.assets.inventories!=null?(((details.financials1[j].statement_of_assets_and_liabilities.assets.inventories/details.financials1[j].statement_of_income_and_expenditure.lineItems.net_revenue)*365)+((details.financials1[j].statement_of_assets_and_liabilities.assets.trade_receivables/details.financials1[j].statement_of_income_and_expenditure.lineItems.net_revenue)*365)-((details.financials1[j].statement_of_assets_and_liabilities.liabilities.trade_payables/details.financials1[j].statement_of_income_and_expenditure.lineItems.net_revenue)*365)).toFixed():"-" %></td>
+                            <% } %>
+                        <% } %>
+                    </tr>
+                    <tr>
+                        <td style="border-bottom: 1px solid #d1d1d1; padding: 5px 5px 0 5px;height: 18px; ">Sales / Net Fixed Assets</td>
+                        <%if (details.financials1.length>0) { %>
+                            <%for(var j=0; j<details.financials1.length && j<3; j++) {  %>
+                              <td style="border-bottom: 1px solid #d1d1d1; padding: 5px 5px 0 5px;height: 18px;"><%= details.financials1[j].statement_of_income_and_expenditure.lineItems.net_revenue!=null && details.financials1[j].statement_of_assets_and_liabilities.assets.net_fixed_assets!=null?(details.financials1[j].statement_of_income_and_expenditure.lineItems.net_revenue/details.financials1[j].statement_of_assets_and_liabilities.assets.net_fixed_assets).toFixed(2):"-" %></td>
+                                
+                            <% } %>
+                        <% } %>
+                    </tr>
+                    <!-- <tr>
+                        <td style="border-bottom: 1px solid #d1d1d1; padding: 5px; ">Current Ratio (Current Assets / Current Liability)</td>
+                        <%if (details.financials1.length>0) { %>
+                            <%for(var j=0; j<details.financials1.length && j<3; j++) {  %>
+                                <td style="border-bottom: 1px solid #d1d1d1; padding: 5px;"><%= details.financials1[j].statement_of_assets_and_liabilities.subTotals.total_current_assets!=null && details.financials1[j].statement_of_assets_and_liabilities.subTotals.total_current_liabilities!=null?(details.financials1[j].statement_of_assets_and_liabilities.subTotals.total_current_assets/details.financials1[j].statement_of_assets_and_liabilities.subTotals.total_current_liabilities).toFixed(2):"-" %></td>
+                                
+                            <% } %>
+                        <% } %>
+                    </tr>
+                    <tr>
+                        <td style="border-bottom: 1px solid #d1d1d1; padding: 5px; ">Quick Ratio ((Current Assets less Inventory)/ Current Liability)</td>
+                        <%if (details.financials1.length>0) { %>
+                            <%for(var j=0; j<details.financials1.length && j<3; j++) {  %>
+                                <td style="border-bottom: 1px solid #d1d1d1; padding: 5px;"><%= details.financials1[j].statement_of_assets_and_liabilities.subTotals.total_current_assets!=null && details.financials1[j].statement_of_assets_and_liabilities.subTotals.total_current_liabilities!=null && details.financials1[j].statement_of_assets_and_liabilities.assets.inventories!=null?((details.financials1[j].statement_of_assets_and_liabilities.subTotals.total_current_assets-details.financials1[j].statement_of_assets_and_liabilities.assets.inventories)/details.financials1[j].statement_of_assets_and_liabilities.subTotals.total_current_liabilities).toFixed(2):"-" %></td>
+                                
+                            <% } %>
+                        <% } %>
+                    </tr> -->
+                    <!-- <tr>
+                        <td style="border-bottom: 1px solid #d1d1d1; padding: 5px; ">Net Worth (Contribution Received + Reserves & Surplus)</td>
+                        <%if (details.financials1.length>0) { %>
+                            <%for(var j=0; j<details.financials1.length && j<3; j++) {  %>
+                                <td style="border-bottom: 1px solid #d1d1d1; padding: 5px;"><%= details.financials1[j].statement_of_assets_and_liabilities.liabilities.contribution_received!=null && details.financials1[j].statement_of_assets_and_liabilities.liabilities.reserves_and_surplus!=null?(details.financials1[j].statement_of_assets_and_liabilities.liabilities.contribution_received+details.financials1[j].statement_of_assets_and_liabilities.liabilities.reserves_and_surplus).toFixed(2):"-" %></td>
+                                
+                            <% } %>
+                        <% } %>
+                    </tr> -->
+                    <tr>
+                        <td style="border-bottom: 1px solid #d1d1d1; padding: 5px; ">External Gearing ( Total External Debt / Networth)</td>
+                        <%if (details.financials1.length>0) { %>
+                            <%for(var j=0; j<details.financials1.length && j<3; j++) {  %>
+                                <td style="border-bottom: 1px solid #d1d1d1; padding: 5px;"><%= details.financials1[j].statement_of_assets_and_liabilities.liabilities.secured_loan!=null && details.financials1[j].statement_of_assets_and_liabilities.liabilities.unsecured_loan!=null && details.financials1[j].statement_of_assets_and_liabilities.liabilities.short_term_borrowing!=null && details.financials1[j].statement_of_assets_and_liabilities.liabilities.contribution_received!=null && details.financials1[j].statement_of_assets_and_liabilities.liabilities.reserves_and_surplus!=null?((details.financials1[j].statement_of_assets_and_liabilities.liabilities.secured_loan+details.financials1[j].statement_of_assets_and_liabilities.liabilities.unsecured_loan+details.financials1[j].statement_of_assets_and_liabilities.liabilities.short_term_borrowing)/(details.financials1[j].statement_of_assets_and_liabilities.liabilities.contribution_received+details.financials1[j].statement_of_assets_and_liabilities.liabilities.reserves_and_surplus)).toFixed(2):"-" %></td>
+                                
+                            <% } %>
+                        <% } %>
+                    </tr>
+                    <tr>
+                        <td style="border-bottom: 1px solid #d1d1d1; padding: 5px; ">Total Gearing ( Total Outside Liabilities / Networth)</td>
+                        <%if (details.financials1.length>0) { %>
+                            <%for(var j=0; j<details.financials1.length && j<3; j++) {  %>
+                                <td style="border-bottom: 1px solid #d1d1d1; padding: 5px;"><%= details.financials1[j].statement_of_assets_and_liabilities.subTotals.given_liabilities_total!=null && details.financials1[j].statement_of_assets_and_liabilities.liabilities.contribution_received!=null && details.financials1[j].statement_of_assets_and_liabilities.liabilities.reserves_and_surplus!=null?((details.financials1[j].statement_of_assets_and_liabilities.subTotals.given_liabilities_total- ((details.financials1[j].statement_of_assets_and_liabilities.liabilities.contribution_received+details.financials1[j].statement_of_assets_and_liabilities.liabilities.reserves_and_surplus)))/(details.financials1[j].statement_of_assets_and_liabilities.liabilities.contribution_received+details.financials1[j].statement_of_assets_and_liabilities.liabilities.reserves_and_surplus)).toFixed(2):"-" %></td>
+                                
+                            <% } %>
+                        <% } %>
+                    </tr>
+                    <tr>
+                        <td style="border-bottom: 1px solid #d1d1d1; padding: 5px; ">Interest Coverage ( EBIDTA / Interest paid)</td>
+                        <%if (details.financials1.length>0) { %>
+                            <%for(var j=0; j<details.financials1.length && j<3; j++) {  %>
+                                <td style="border-bottom: 1px solid #d1d1d1; padding: 5px;"><%= details.financials1[j].statement_of_income_and_expenditure.operating_profit!=null && details.financials1[j].statement_of_income_and_expenditure.interest!=null && details.financials1[j].statement_of_income_and_expenditure.interest!=0?(details.financials1[j].statement_of_income_and_expenditure.operating_profit/details.financials1[j].statement_of_income_and_expenditure.interest).toFixed(2):"-"  %></td>
+                                
+                            <% } %>
+                        <% } %>
+                    </tr>
+                   
+                </table>
+            </td>
+        </tr>
+        <% }else{ %> 
+        <tr>
+            <td style="font-family: Arial;border-bottom: 1px solid #d1d1d1; padding: 8px 15px 8px 0; font-size: 7.5pt;">                 
+                There is no Statement of Account  
+            </td>
+        </tr>
+        <% } %>
+    </table>
+    <!-- table no 2 -->
+    <tr><td> <div style="page-break-after: always;"></div></td></tr>
+     <!-- table no 2 -->
+    <table cellspacing="0" cellpadding="0" style="border: 0;width: 100%;margin: 0 auto;">
+      
+        <tr>
+            <td style="font-family: Arial; padding: 8px 15px 8px 0; background-color: #FFF; color: #FF5000;border-bottom: 1px solid #d1d1d1; font-weight: bold; font-size: 9pt;">
+                Certifier(s)
+            </td>
+        </tr>
+        <tr>
+            <td style="font-family: Arial; font-size: 7.5pt;">
+                <table width="100%" cellspacing="0" cellpadding="0">
+                    <tr style="background-color: #f7f7f7;">
+                        <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px; width: 350px;">Year</td>
+                        <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px; width: 350px;">Certifier Name(s)</td>
+                        <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px; width: 350px;">Designation</td>
+                        <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px; width: 350px;">Firm Name(s)</td>
+                        <!-- <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px; width: 350px;">Address (of firm or auditor)</td>                 -->
+                    </tr>
+                    <%if (details.financials1.length>0) { %>
+                        <%for(var j=0; j<details.financials1.length; j++) {  %>
+                            <tr>
+                                <td style="border-bottom: 1px solid #d1d1d1; padding: 1px; "><%= details.financials1[j].year %></td>
+                                <td style="border-bottom: 1px solid #d1d1d1; padding: 1px; "><%= details.financials1[j].certifiers.name %></td>
+                                <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= details.financials1[j].certifiers.type %></td>  
+                                <td style="border-bottom: 1px solid #d1d1d1; padding: 1px; "><%= details.financials1[j].certifiers.firm_name %></td>
+                                <!-- <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= details.financials1[j].certifiers.address %></td>       -->
+                            </tr>
+                        <% } %>
+                    <% } %>
+                    
+                </table>
+            </td>
+        </tr>
+    </table>
+    <!-- table no 2 -->
+    <tr><td> <div style="page-break-after: always;"></div></td></tr>
+
+
+    <!-- table no 3 -->
+    <table cellspacing="0" cellpadding="0" style="border: 0;width: 100%;margin: 0 auto;">
+        <tr>
+            <td style="font-family: Arial; padding: 8px 15px 8px 0; background-color: #FFF; color: #FF5000;border-bottom: 1px solid #d1d1d1; font-weight: bold; font-size: 9pt;">
+                Structure - <%if (details.contribution_details.length>0 && details.contribution_details.financial_year!=null) { %> <%= new Date(details.contribution_details.financial_year).toLocaleDateString("en-US", { year: 'numeric', month: 'long', day: 'numeric' }) %> <% } %>
+            </td>
+        </tr>
+        <%if (details.contribution_details.length>0 ) { %>
+        <%if (details.contribution_details.individual_partners.length>0 || details.contribution_details.body_corporates.length>0) { %>
+        
+        <%if (details.contribution_details.individual_partners.length>0) { %>
+        <tr>
+            <td style="font-family: Arial; padding: 8px 15px; background-color: #e0e0e0; color: #000; font-weight: bold; font-size: 8.25pt; border-top: 1px solid #d1d1d1; border-bottom: 1px solid #d1d1d1; ;">
+                Contribution by Partners as on - <%if (details.contribution_details.financial_year!=null) { %> <%= new Date(details.contribution_details.financial_year).toLocaleDateString("en-US", { year: 'numeric', month: 'long', day: 'numeric' }) %> <% } %>
+            </td>
+        </tr>
+        <tr>
+            <td style="font-family: Arial; font-size: 7.5pt;text-align: left;">
+                <table width="100%" cellspacing="0" cellpadding="0">
+                    
+                    <tr style="background-color: #f7f7f7;">
+                        <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px 5px 1px 1px;">Financial Year</td>
+                        <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px 5px 1px 1px;">Name</td>
+                        <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px 5px 1px 1px;">Designation</td>
+                        <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px 5px 1px 1px;">ID Type</td>
+                        <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px 5px 1px 1px;">ID</td>
+                        <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px 5px 1px 1px;">Obligation of Contribution (Rs. INR, Million)</td>
+                        <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px 5px 1px 1px;">Contribution Received (Rs. INR, Million)</td>
+                    </tr>
+                    <%for(var j=0; j<details.contribution_details.individual_partners.length; j++) {  %>
+                    <tr>
+                        <td style="border-bottom: 1px solid #d1d1d1; padding: 1px 5px 1px 1px;"><%= new Date(details.contribution_details.financial_year).toLocaleDateString("en-US", { year: 'numeric', month: 'long', day: 'numeric' }) %> </td>
+                        <td style="border-bottom: 1px solid #d1d1d1; padding: 1px 5px 1px 1px;"><%= details.contribution_details.individual_partners[j].name %> </td>
+                        <td style="border-bottom: 1px solid #d1d1d1; padding: 1px 5px 1px 1px;"><%= details.contribution_details.individual_partners[j].designation %> </td>
+                        <td style="border-bottom: 1px solid #d1d1d1; padding: 1px 5px 1px 1px;"><%= details.contribution_details.individual_partners[j].id_type %> </td>
+                        <td style="border-bottom: 1px solid #d1d1d1; padding: 1px 5px 1px 1px;"><%= details.contribution_details.individual_partners[j].id %> </td>
+                        <td style="border-bottom: 1px solid #d1d1d1; padding: 1px 5px 1px 1px;"><%= (details.contribution_details.individual_partners[j].obligation_contribution/1000000).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %> </td>
+                        <td style="border-bottom: 1px solid #d1d1d1; padding: 1px 5px 1px 1px;"><%= (details.contribution_details.individual_partners[j].received_contribution/1000000).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %> </td>
+                    </tr>
+                    <% } %>
+                </table>
+            </td>
+        </tr>
+        <% } %>
+       
+        <%if (details.contribution_details.body_corporates.length>0) { %>
+        <tr>
+            <td style="font-family: Arial; padding: 8px 15px; background-color: #e0e0e0; color: #000; font-weight: bold; font-size: 8.25pt; border-top: 1px solid #d1d1d1; border-bottom: 1px solid #d1d1d1; ;">
+                Contribution by Body Corporate as on - <%if (details.contribution_details.financial_year!=null) { %> <%= new Date(details.contribution_details.financial_year).toLocaleDateString("en-US", { year: 'numeric', month: 'long', day: 'numeric' }) %> <% } %>
+            </td>
+        </tr>
+        <tr>
+            <td style="font-family: Arial; font-size: 7.5pt;text-align: left;">
+                <table width="100%" cellspacing="0" cellpadding="0">
+                    
+                    <tr style="background-color: #f7f7f7;">
+                        <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px 5px 1px 1px;">Financial Year</td>
+                        <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px 5px 1px 1px;">Name</td>
+                        <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px 5px 1px 1px;">ID Type</td>
+                        <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px 5px 1px 1px;">ID</td>
+                        <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px 5px 1px 1px;">Nominee Name</td>
+                        <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px 5px 1px 1px;">Nominee ID Type</td>
+                        <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px 5px 1px 1px;">Nominee ID</td>
+                        <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px 5px 1px 1px;">Obligation of Contribution (Rs. INR, Million)</td>
+                        <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px 5px 1px 1px;">Contribution Received (Rs. INR, Million)</td>
+                    </tr>
+                    <%for(var j=0; j<details.contribution_details.body_corporates.length; j++) {  %>
+                    <tr>
+                        <td style="border-bottom: 1px solid #d1d1d1; padding: 1px 5px 1px 1px;"><%= new Date(details.contribution_details.financial_year).toLocaleDateString("en-US", { year: 'numeric', month: 'long', day: 'numeric' }) %> </td>
+                        <td style="border-bottom: 1px solid #d1d1d1; padding: 1px 5px 1px 1px;"><%= details.contribution_details.body_corporates[j].name %> </td>
+                        <td style="border-bottom: 1px solid #d1d1d1; padding: 1px 5px 1px 1px;"><%= details.contribution_details.body_corporates[j].id_type %> </td>
+                        <td style="border-bottom: 1px solid #d1d1d1; padding: 1px 5px 1px 1px;"><%= details.contribution_details.body_corporates[j].id %> </td>
+                        <td style="border-bottom: 1px solid #d1d1d1; padding: 1px 5px 1px 1px;"><%= details.contribution_details.body_corporates[j].nominee_name %> </td>
+                        <td style="border-bottom: 1px solid #d1d1d1; padding: 1px 5px 1px 1px;"><%= details.contribution_details.body_corporates[j].nominee_id_type %> </td>
+                        <td style="border-bottom: 1px solid #d1d1d1; padding: 1px 5px 1px 1px;"><%= details.contribution_details.body_corporates[j].nominee_id %> </td>
+                        <td style="border-bottom: 1px solid #d1d1d1; padding: 1px 5px 1px 1px;"><%= (details.contribution_details.body_corporates[j].obligation_contribution/1000000).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %> </td>
+                        <td style="border-bottom: 1px solid #d1d1d1; padding: 1px 5px 1px 1px;"><%= (details.contribution_details.body_corporates[j].received_contribution/1000000).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %> </td>
+                    </tr>
+                    <% } %>
+                </table>
+            </td>
+        </tr>
+        <% }  %>
+            
+        <% }  %>
+        <% } else { %>
+            <td style="font-family: Arial; padding: 8px 15px 8px 0; background-color: #fff; color: #000; font-size: 7.5pt; border-top: 1px solid #d1d1d1; border-bottom: 1px solid #d1d1d1; ;">
+                There is no structure to show
+            </td>
+        <% } %>
+    </table>
+    <!-- table no 3 -->
+    <tr><td> <div style="page-break-after: always;"></div></td></tr>
+     <!-- table no 3 -->
+     <table cellspacing="0" cellpadding="0" style="border: 0; width: 100%;margin: 0 auto;">
+        <tr>
+            <td colspan="5" style="font-family: Arial; padding: 8px 15px 8px 0; background-color: #FFF; color: #FF5000;border-bottom: 1px solid #d1d1d1; font-weight: bold; font-size: 9pt;">
+                Related Corporates
+            </td>
+        </tr>
+       
+        <tr>
+            <!-- <td style="padding: 1px; border-top: 1px solid #d1d1d1; border-bottom: 1px solid #d1d1d1;width:10%;"></td> -->
+            <td style="padding: 1px; border-top: 1px solid #D1D1D1; border-bottom: 1px solid #D1D1D1;width:10%;font-size:6pt;"">*H = Shareholding</td>
+            <td style="padding: 1px; border-top: 1px solid #D1D1D1; border-bottom: 1px solid #D1D1D1;width:10%;font-size:6pt;"">*PC = Paid Up Capital</td>
+            <td style="padding: 1px; border-top: 1px solid #D1D1D1; border-bottom: 1px solid #D1D1D1;width:10%;font-size:6pt;"">*OC = Obligation of Contribution</td>
+            <td style="padding: 1px; border-top: 1px solid #D1D1D1; border-bottom: 1px solid #D1D1D1;width:10%;font-size:6pt;"">*CF = Charges filed</td>
+            <td style="padding: 1px; border-top: 1px solid #D1D1D1; border-bottom: 1px solid #D1D1D1;width:10%;font-size:6pt;""> *ID = Incorporation date</td>
+   
+        </tr>
+        <tr>
+            <td colspan="5" style="font-family: Arial; padding:10px 0; background-color: #e0e0e0; color: #000; font-weight: bold; font-size: 9pt; border-top: 1px solid #d1d1d1; border-bottom: 1px solid #d1d1d1; ;">
+                Holding Corporates
+            </td>
+        </tr>
+        
+            <%if (details.holding_entities.company.length>0) { %>
+                <!-- <tr>
+                    <td style="font-family: Arial; padding: 8px 15px; background-color: #e0e0e0; color: #000; font-weight: bold; font-size: 8.25pt; border-top: 1px solid #d1d1d1; border-bottom: 1px solid #d1d1d1; ;">
+                        Companies - <%if (details.holding_entities.financial_year!=null) { %> <%= details.holding_entities.financial_year %> <% } %>
+                    </td>
+                </tr> -->
+                <tr>
+                    <td style="font-family: Arial; font-size: 7.5pt;">
+                        <table width="100%" cellspacing="0" cellpadding="0">
+                            
+                            <tr style="background-color: #e0e0e0;">
+                                <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px;">Name</td>
+                                <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px;">CIN</td>
+                                <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px;">Paid Up Captital</td>
+                                <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px;">Sum of Charge</td>
+                                <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px;">Share holding Percentage</td>
+                            </tr>
+                            <%for(var j=0; j<details.holding_entities.company.length; j++) {  %>
+                            <tr>
+                                <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= details.holding_entities.company[j].legal_name %> </td>
+                                <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= details.holding_entities.company[j].cin %> </td>
+                                <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= details.holding_entities.company[j].paid_up_capital.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %> </td>
+                                <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= details.holding_entities.company[j].sum_of_charges.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %> </td>
+                                <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= details.holding_entities.company[j].share_holding_percentage %> </td>
+                            </tr>
+                            <% } %>
+                        </table>
+                    </td>
+                </tr>
+            <% } %>
+            <%if (details.holding_entities.llp.length>0) { %>
+                <!-- <tr>
+                    <td style="font-family: Arial; padding: 8px 15px; background-color: #e0e0e0; color: #000; font-weight: bold; font-size: 8.25pt; border-top: 1px solid #d1d1d1; border-bottom: 1px solid #d1d1d1; ;">
+                        LLps - <%if (details.holding_entities.financial_year!=null) { %> <%= details.holding_entities.financial_year %> <% } %>
+                    </td>
+                </tr> -->
+                <tr>
+                    <td style="font-family: Arial; font-size: 7.5pt;">
+                        <table width="100%" cellspacing="0" cellpadding="0">
+                            
+                            <tr style="background-color: #e0e0e0;">
+                                <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px;">Name</td>
+                                <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px;">Llpin</td>
+                                <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px;">Total Obligationnof Contribution</td>
+                                <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px;">Sum of Charge</td>
+                                <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px;">Share holding Percentage</td>
+                            </tr>
+                            <%for(var j=0; j<details.holding_entities.llp.length; j++) {  %>
+                            <tr>
+                                <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= details.holding_entities.llp[j].legal_name %> </td>
+                                <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= details.holding_entities.llp[j].llpin %> </td>
+                                <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= details.holding_entities.llp[j].total_obligation_of_contribution.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %> </td>
+                                <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= details.holding_entities.llp[j].sum_of_charges.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %> </td>
+                                <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= details.holding_entities.llp[j].share_holding_percentage %> </td>
+                            </tr>
+                            <% } %>
+                        </table>
+                    </td>
+                </tr>
+            <% } %>
+            <%if (details.holding_entities.company.length==0 && details.holding_entities.llp.length==0) { %>
+                <td style="font-family: Arial; padding: 8px 15px 8px 0; background-color: #fff; color: #000; font-size: 7.5pt; border-top: 1px solid #d1d1d1; border-bottom: 1px solid #d1d1d1; ;" colspan="5">
+                    This corporate does not have any Holding Corporates as per our records
+                </td>
+            <% } %>   
+        <tr>
+            <td colspan="5" style="font-family: Arial; padding:10px 0; background-color: #e0e0e0; color: #000; font-weight: bold; font-size: 9pt; border-top: 1px solid #d1d1d1; border-bottom: 1px solid #d1d1d1; ;">
+                Subsidiary Corporates
+            </td>
+        </tr>
+                <%if (details.subsidiary_entities.company.length>0) { %>
+                    <!-- <tr>
+                        <td style="font-family: Arial; padding: 8px 15px; background-color: #e0e0e0; color: #000; font-weight: bold; font-size: 8.25pt; border-top: 1px solid #d1d1d1; border-bottom: 1px solid #d1d1d1; ;">
+                            Companies - <%if (details.subsidiary_entities.financial_year!=null) { %> <%= details.subsidiary_entities.financial_year %> <% } %>
+                        </td>
+                    </tr> -->
+                    <tr>
+                        <td style="font-family: Arial; font-size: 7.5pt;">
+                            <table width="100%" cellspacing="0" cellpadding="0">
+                                
+                                <tr style="background-color: #e0e0e0;">
+                                    <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px;">Name</td>
+                                    <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px;">CIN</td>
+                                    <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px;">Paid Up Captital</td>
+                                    <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px;">Sum of Charge</td>
+                                    <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px;">Share holding Percentage</td>
+                                </tr>
+                                <%for(var j=0; j<details.subsidiary_entities.company.length; j++) {  %>
+                                <tr>
+                                    <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= details.subsidiary_entities.company[j].legal_name %> </td>
+                                    <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= details.subsidiary_entities.company[j].cin %> </td>
+                                    <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= details.subsidiary_entities.company[j].paid_up_capital.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %> </td>
+                                    <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= details.subsidiary_entities.company[j].sum_of_charges.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %> </td>
+                                    <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= details.subsidiary_entities.company[j].share_holding_percentage %> </td>
+                                </tr>
+                                <% } %>
+                            </table>
+                        </td>
+                    </tr>
+                <% } %>
+                <%if (details.subsidiary_entities.llp.length>0) { %>
+                    <!-- <tr>
+                        <td style="font-family: Arial; padding: 8px 15px; background-color: #e0e0e0; color: #000; font-weight: bold; font-size: 8.25pt; border-top: 1px solid #d1d1d1; border-bottom: 1px solid #d1d1d1; ;">
+                            LLps - <%if (details.subsidiary_entities.financial_year!=null) { %> <%= details.subsidiary_entities.financial_year %> <% } %>
+                        </td>
+                    </tr> -->
+                    <tr>
+                        <td style="font-family: Arial; font-size: 7.5pt;">
+                            <table width="100%" cellspacing="0" cellpadding="0">
+                                
+                                <tr style="background-color: #e0e0e0;">
+                                    <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px;">Name</td>
+                                    <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px;">Llpin</td>
+                                    <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px;">Total Obligationnof Contribution</td>
+                                    <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px;">Sum of Charge</td>
+                                    <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px;">Share holding Percentage</td>
+                                </tr>
+                                <%for(var j=0; j<details.subsidiary_entities.llp.length; j++) {  %>
+                                <tr>
+                                    <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= details.subsidiary_entities.llp[j].legal_name %> </td>
+                                    <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= details.subsidiary_entities.llp[j].llpin %> </td>
+                                    <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= details.subsidiary_entities.llp[j].total_obligation_of_contribution.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %> </td>
+                                    <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= details.subsidiary_entities.llp[j].sum_of_charges.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %> </td>
+                                    <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= details.subsidiary_entities.llp[j].share_holding_percentage %> </td>
+                                </tr>
+                                <% } %>
+                            </table>
+                        </td>
+                    </tr>
+                <% } %>
+                <%if (details.subsidiary_entities.company.length==0 && details.subsidiary_entities.llp.length==0) { %>
+                    <td style="font-family: Arial; padding: 8px 15px 8px 0; background-color: #fff; color: #000; font-size: 7.5pt; border-top: 1px solid #d1d1d1; border-bottom: 1px solid #d1d1d1; ;" colspan="5">
+                        This corporate does not have any Subsidiary Corporates as per our records
+                    </td>
+                <% } %>   
+       
+    </table>
+    <!-- table no 3 -->
+    <tr><td> <div style="page-break-after: always;"></div></td></tr>
+    <!-- table no 3 -->
+    <table cellspacing="0" cellpadding="0" style="border: 0;width: 100%;margin: 0 auto;">
+        <tr>
+            <td style="font-family: Arial; padding: 8px 15px 8px 0; background-color: #FFF; color: #FF5000;border-bottom: 1px solid #d1d1d1; font-weight: bold; font-size: 9pt;">
+                Current Directors / Partners / Designated Partners
+            </td>
+        </tr>
+        <%if (details.directors.length>0) { %>
+        <tr>
+            <td style="font-family: Arial; font-size: 6.75pt;">
+                <table width="100%" cellspacing="0" cellpadding="0">
+                    
+                    <tr style="background-color: #e0e0e0;">
+                        <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px 5px 1px 1px;">Director Name</td>
+                        <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px 5px 1px 1px;">Designation</td>
+                        <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px 5px 1px 1px;">DIN</td>
+                        <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px 5px 1px 1px;">PAN</td>
+                        <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px 5px 1px 1px;">DOB</td>
+                        <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px 5px 1px 1px;">Gender</td>
+                        <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px 5px 1px 1px;">Appointment
+                            Date
+                        </td>
+                    </tr>
+                    <%for(var j=0; j<details.directors.length; j++) {  %>
+                        <%if (details.directors[j].date_of_cessation==null) { %>
+                            <tr>
+                                <td style="border-bottom: 1px solid #d1d1d1; padding: 1px 5px 1px 1px;"><%= details.directors[j].name %> </td>
+                                <td style="border-bottom: 1px solid #d1d1d1; padding: 1px 5px 1px 1px;"><%= details.directors[j].designation %> </td>
+                                <td style="border-bottom: 1px solid #d1d1d1; padding: 1px 5px 1px 1px;"><%= details.directors[j].din %> </td>
+                                <td style="border-bottom: 1px solid #d1d1d1; padding: 1px 5px 1px 1px;"><%= details.directors[j].pan %> </td>
+                                <td style="border-bottom: 1px solid #d1d1d1; padding: 1px 5px 1px 1px;"><%= new Date(details.directors[j].date_of_birth).toLocaleDateString("en-US", { year: 'numeric', month: 'long', day: 'numeric' }) %> </td>
+                                <td style="border-bottom: 1px solid #d1d1d1; padding: 1px 5px 1px 1px;"><%= details.directors[j].gender %> </td>
+                                <td style="border-bottom: 1px solid #d1d1d1; padding: 1px 5px 1px 1px;"><%= new Date(details.directors[j].date_of_appointment).toLocaleDateString("en-US", { year: 'numeric', month: 'long', day: 'numeric' }) %> </td>
+                            </tr>
+                        <% } %>
+                    <% } %>
+                </table>
+            </td>
+        </tr>
+        <% } %>
+    </table>
+    <!-- table no 3 -->
+    <tr><td> <div style="page-break-after: always;"></div></td></tr>
+
+    <table cellspacing="0" cellpadding="0" style="border: 0;width: 100%;margin: 0 auto;">
+        <tr>
+            <td style="font-family: Arial; padding: 8px 15px 8px 0; background-color: #FFF; color: #FF5000;border-bottom: 1px solid #d1d1d1; font-weight: bold; font-size: 9pt;">
+                Other Directorships
+            </td>
+        </tr>
+
+        <tr>
+          <td style="font-family: Arial; font-size: 6.75pt;">
+            <table width="100%" cellspacing="0" cellpadding="0" style="border: 0; border-collapse:collapse;">
+                <!-- <tr>
+                    <td colspan="1" style="padding: 1px; border-top: 1px solid #d1d1d1; border-bottom: 1px solid #d1d1d1;"> &nbsp;</td>
+                    <td style="padding: 1px; border-top: 1px solid #d1d1d1; border-bottom: 1px solid #d1d1d1;">*PC = Paid Up Capital</td>
+                    <td style="padding: 1px; border-top: 1px solid #d1d1d1; border-bottom: 1px solid #d1d1d1;">*CF = Charges filed</td>
+                    <td style="padding: 1px; border-top: 1px solid #d1d1d1; border-bottom: 1px solid #d1d1d1;">*OC = Obligation of Contribution</td>
+                    <td style="padding: 1px; border-top: 1px solid #d1d1d1; border-bottom: 1px solid #d1d1d1;"> *ID = Incorporation date</td>
+                    <td colspan="2" style="padding: 1px; border-top: 1px solid #d1d1d1; border-bottom: 1px solid #d1d1d1;"> &nbsp;</td>
+                </tr> -->
+                <tr>
+                    <td style="padding: 1px; border-top: 1px solid #D1D1D1; border-bottom: 1px solid #D1D1D1;"></td>
+                    <td style="padding: 1px; border-top: 1px solid #D1D1D1; border-bottom: 1px solid #D1D1D1;font-size:6pt;">*PC =
+                        Paid Up Capital</td>
+                    <td style="padding: 1px; border-top: 1px solid #D1D1D1; border-bottom: 1px solid #D1D1D1;font-size:6pt">*OC =
+                        Obligation of Contribution</td>
+                    <td style="padding: 1px; border-top: 1px solid #D1D1D1; border-bottom: 1px solid #D1D1D1;font-size:6pt">*CF =
+                        Charges Filed</td>
+                    <td style="padding: 1px; border-top: 1px solid #D1D1D1; border-bottom: 1px solid #D1D1D1;font-size:6pt"> *ID.
+                        = Incorporation Date </td>
+                    <td style="padding: 1px; border-top: 1px solid #D1D1D1; border-bottom: 1px solid #D1D1D1;" colspan="2">
+                        &nbsp;</td>
+                </tr>
+                <%if (details.director_network.length>0) { %>
+                    <%for(var j=0; j<details.director_network.length; j++) {  %>
+                        <tr>
+                            <td colspan="7" style="border-top:3px solid #000;"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="7" style="font-weight: bold; padding: 10px 0 10px 0;font-size: 7.5pt;"><%= details.director_network[j].name!=null?details.director_network[j].name:"" %> (<%= details.director_network[j].din!=null?"DIN:"+details.director_network[j].din:"" %>)</td>
+                        </tr>
+                        <tr>
+                            <td colspan="7" style="border-top:3px solid #000;"></td>
+                        </tr>
+                        <tr style="background-color: #e0e0e0;">
+                            <td style="font-weight: bold; padding: 1px;width:10%;">Corporate Name</td>
+                            <td style="font-weight: bold; padding: 1px;width:10%;"> *PC (INR, Million)</td>
+                            <td style="font-weight: bold; padding: 1px;width:10%;">*CF/OC (INR, Million)</td>
+                            <td style="font-weight: bold; padding: 1px;width:10%;">*ID</td>
+                            <td style="font-weight: bold; padding: 1px;width:5%;">Status</td>
+                            <td style="font-weight: bold; padding: 1px;width:5%;">Appointment Date</td>
+                            <!-- <td style="font-weight: bold; padding: 1px;width:5%;">Cessation Date</td> -->
+                        </tr>
+                       
+            
+                            <%if (details.director_network[j].network.companies.length>0) { %>
+                            
+                                <%for(var k=0; k<details.director_network[j].network.companies.length; k++) {  %> 
+                                    <%if (details.director_network[j].network.companies[k].date_of_cessation==null) { %>
+                                        <tr>
+                                            <td style="padding: 1px; border-top: 1px solid #d1d1d1; border-bottom: 1px solid #d1d1d1; width:10%"><%= details.director_network[j].network.companies[k].legal_name!=null?details.director_network[j].network.companies[k].legal_name:"-" %>(<%= details.director_network[j].network.companies[k].cin!=null?details.director_network[j].network.companies[k].cin:"-" %>)</td>
+                                            <td style="padding: 1px; border-top: 1px solid #d1d1d1; border-bottom: 1px solid #d1d1d1;width:8%"><%= details.director_network[j].network.companies[k].paid_up_capital!=null?(details.director_network[j].network.companies[k].paid_up_capital/1000000).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","):"-" %></td>
+                                            <td style="padding: 1px; border-top: 1px solid #d1d1d1; border-bottom: 1px solid #d1d1d1;width:8%"><%= details.director_network[j].network.companies[k].sum_of_charges!=null?(details.director_network[j].network.companies[k].sum_of_charges/1000000).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","):"-" %></td>
+                                            <td style="padding: 1px; border-top: 1px solid #d1d1d1; border-bottom: 1px solid #d1d1d1;width:8%"><%= details.director_network[j].network.companies[k].incorporation_date!=null?new Date(details.director_network[j].network.companies[k].incorporation_date).toLocaleDateString("en-US", { year: 'numeric', month: 'long', day: 'numeric' }):"-" %></td>
+                                            <td style="padding: 1px; border-top: 1px solid #d1d1d1; border-bottom: 1px solid #d1d1d1; width:5%"><%= details.director_network[j].network.companies[k].company_status!=null?details.director_network[j].network.companies[k].company_status:"-" %> </td>
+                                            <td style="padding: 1px; border-top: 1px solid #d1d1d1; border-bottom: 1px solid #d1d1d1;width:5%"><%= details.director_network[j].network.companies[k].date_of_appointment!=null?new Date(details.director_network[j].network.companies[k].date_of_appointment).toLocaleDateString("en-US", { year: 'numeric', month: 'long', day: 'numeric' }):"-" %></td>
+                                            <!-- <td style="padding: 1px; border-top: 1px solid #d1d1d1; border-bottom: 1px solid #d1d1d1;width:5%"><%= details.director_network[j].network.companies[k].date_of_cessation!=null?new Date(details.director_network[j].network.companies[k].date_of_cessation).toLocaleDateString("en-US", { year: 'numeric', month: 'long', day: 'numeric' }):"-" %></td> -->
+                                        </tr>
+                                    <% }  %>
+                                <% }  %>
+                            <% } %>
+                            <%if (details.director_network[j].network.llps.length>0) { %>
+                                <%for(var k=0; k<details.director_network[j].network.llps.length; k++) {  %> 
+                                    <%if (details.director_network[j].network.llps[k].date_of_cessation==null) { %>
+                                        <%if (details.llp.llpin!=details.director_network[j].network.llps[k].llpin) { %>
+                                        <tr>
+                                            <td style="padding: 1px; border-top: 1px solid #d1d1d1; border-bottom: 1px solid #d1d1d1;width:10%"><%= details.director_network[j].network.llps[k].legal_name!=null?details.director_network[j].network.llps[k].legal_name:"-" %>(<%= details.director_network[j].network.llps[k].llpin!=null?details.director_network[j].network.llps[k].llpin:"-" %>)</td>
+                                            <td style="padding: 1px; border-top: 1px solid #d1d1d1; border-bottom: 1px solid #d1d1d1;width:10%"><%= details.director_network[j].network.llps[k].total_obligation_of_contribution!=null?(details.director_network[j].network.llps[k].total_obligation_of_contribution/1000000).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","):"-" %></td>
+                                            <td style="padding: 1px; border-top: 1px solid #d1d1d1; border-bottom: 1px solid #d1d1d1;width:10%"><%= details.director_network[j].network.llps[k].sum_of_charges!=null?(details.director_network[j].network.llps[k].sum_of_charges/1000000).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","):"-" %></td>
+                                            <td style="padding: 1px; border-top: 1px solid #d1d1d1; border-bottom: 1px solid #d1d1d1;width:10%"><%= details.director_network[j].network.llps[k].incorporation_date!=null?new Date(details.director_network[j].network.llps[k].incorporation_date).toLocaleDateString("en-US", { year: 'numeric', month: 'long', day: 'numeric' }):"-" %></td>
+                                            <td style="padding: 1px; border-top: 1px solid #d1d1d1; border-bottom: 1px solid #d1d1d1;width:5%"><%= details.director_network[j].network.llps[k].company_status!=null?details.director_network[j].network.llps[k].company_status:"-" %> </td>
+                                            <td style="padding: 1px; border-top: 1px solid #d1d1d1; border-bottom: 1px solid #d1d1d1;width:5%"><%= details.director_network[j].network.llps[k].date_of_appointment!=null?new Date(details.director_network[j].network.llps[k].date_of_appointment).toLocaleDateString("en-US", { year: 'numeric', month: 'long', day: 'numeric' }):"-" %></td>
+                                            <!-- <td style="padding: 1px; border-top: 1px solid #d1d1d1; border-bottom: 1px solid #d1d1d1;width:5%"><%= details.director_network[j].network.llps[k].date_of_cessation!=null?new Date(details.director_network[j].network.llps[k].date_of_cessation).toLocaleDateString("en-US", { year: 'numeric', month: 'long', day: 'numeric' }):"-" %></td> -->
+                                        </tr>
+                                        <% }  %>
+                                    <% }  %>
+                                <% }  %>
+                            <% } %>
+                    <% } %>
+              <% } else { %>
+                <tr>
+                    <td colspan="7" style="padding: 8px 15px 8px 0; border-top: 1px solid #d1d1d1; border-bottom: 1px solid #d1d1d1; font-size: 7.5pt;font-family: Arial;">There is no Director Network</td>
+                </tr>
+          <% } %>
+
+
+            </table>
+          </td>
+        </tr>
+    </table>
+
+    <!-- table no 3 -->
+    <tr><td> <div style="page-break-after: always;"></div></td></tr>
+
+
+    <!-- table no 4 -->
+    <table cellspacing="0" cellpadding="0" style="border: 0;width: 100%;margin: 0 auto;">
+        <tr>
+            <td style="font-family: Arial; padding: 8px 15px 8px 0; background-color: #FFF; color: #FF5000;border-bottom: 1px solid #d1d1d1; font-weight: bold; font-size: 9pt;">
+                Charges Files - Open
+            </td>
+        </tr>
+        <%if (details.chargeSequence.length>0) { %>
+        <tr>
+            <td style="font-family: Arial; font-size: 6.75pt;">
+                <table width="100%" cellspacing="0" cellpadding="0">
+                   <tr style="background-color: #f7f7f7;">
+                      <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px;">Sl.No</td> 
+                      <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px;">Charge ID </td> 
+                      <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px;">Status</td> 
+                      <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px;">Date</td> 
+                      <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px;">Filing Date</td> 
+                      <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px;">Holder Name</td> 
+                      <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px;">Amount (INR, Million) </td> 
+                      <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px;">Property Type</td> 
+                      <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px;">No. of Holders </td> 
+                   </tr> 
+                       
+                            <%for(var j=0; j<details.chargeSequence.length; j++) {  %>
+                                <%if (details.chargeSequence[j].details.length==1) { %>
+                                    <%for(var k=details.chargeSequence[j].details.length-1; k>= 0; k--) {  %>
+                                        
+                                            <tr>
+                                                <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= j+1 %></td> 
+                                                <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= details.chargeSequence[j].details[k].charge_id %></td> 
+                                                <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= details.chargeSequence[j].details[k].status %></td> 
+                                                <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= new Date(details.chargeSequence[j].details[k].date).toLocaleDateString("en-US", { year: 'numeric', month: 'long', day: 'numeric' }) %></td> 
+                                                <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= new Date(details.chargeSequence[j].details[k].filing_date).toLocaleDateString("en-US", { year: 'numeric', month: 'long', day: 'numeric' }) %></td> 
+                                                <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= details.chargeSequence[j].details[k].holder_name %></td> 
+                                                <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= (details.chargeSequence[j].details[k].amount/1000000).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %></td> 
+                                                <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= details.chargeSequence[j].details[k].property_type %></td> 
+                                                <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= details.chargeSequence[j].details[k].number_of_holder %></td> 
+                                            </tr>
+                                    
+                                    <% } %>
+
+                                <% } else { %>
+                                    <%for(var k=details.chargeSequence[j].details.length-1; k>= 0; k--) {  %>
+                                    
+                                            <%if (k==details.chargeSequence[j].details.length-1) { %>
+                                            <tr>
+                                                <td style=" padding: 1px;"><%= j+1 %></td> 
+                                                <td style=" padding: 1px;"><%= details.chargeSequence[j].details[k].charge_id %></td> 
+                                                <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= details.chargeSequence[j].details[k].status %></td> 
+                                                <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= new Date(details.chargeSequence[j].details[k].date).toLocaleDateString("en-US", { year: 'numeric', month: 'long', day: 'numeric' }) %></td> 
+                                                <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= new Date(details.chargeSequence[j].details[k].filing_date).toLocaleDateString("en-US", { year: 'numeric', month: 'long', day: 'numeric' }) %></td> 
+                                                <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= details.chargeSequence[j].details[k].holder_name %></td> 
+                                                <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= (details.chargeSequence[j].details[k].amount/1000000).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %></td> 
+                                                <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= details.chargeSequence[j].details[k].property_type %></td> 
+                                                <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= details.chargeSequence[j].details[k].number_of_holder %></td> 
+                                            </tr>
+                                            
+                                            <% } else if (k==0) { %>
+                                                <tr>
+                                                    <td colspan="2" style="border-bottom: 1px solid #d1d1d1; padding: 1px;">&nbsp;</td> 
+                                                    <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= details.chargeSequence[j].details[k].status %></td> 
+                                                    <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= new Date(details.chargeSequence[j].details[k].date).toLocaleDateString("en-US", { year: 'numeric', month: 'long', day: 'numeric' }) %></td> 
+                                                    <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= new Date(details.chargeSequence[j].details[k].filing_date).toLocaleDateString("en-US", { year: 'numeric', month: 'long', day: 'numeric' }) %></td> 
+                                                    <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= details.chargeSequence[j].details[k].holder_name %></td> 
+                                                    <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= (details.chargeSequence[j].details[k].amount/1000000).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %></td> 
+                                                    <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= details.chargeSequence[j].details[k].property_type %></td> 
+                                                    <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= details.chargeSequence[j].details[k].number_of_holder %></td> 
+                                                </tr>
+                                            <% } else { %>
+                                                <tr>
+                                                    <td colspan="2">&nbsp;</td> 
+                                                    <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= details.chargeSequence[j].details[k].status %></td> 
+                                                    <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= new Date(details.chargeSequence[j].details[k].date).toLocaleDateString("en-US", { year: 'numeric', month: 'long', day: 'numeric' }) %></td> 
+                                                    <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= new Date(details.chargeSequence[j].details[k].filing_date).toLocaleDateString("en-US", { year: 'numeric', month: 'long', day: 'numeric' }) %></td> 
+                                                    <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= details.chargeSequence[j].details[k].holder_name %></td> 
+                                                    <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= (details.chargeSequence[j].details[k].amount/1000000).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %></td> 
+                                                    <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= details.chargeSequence[j].details[k].property_type %></td> 
+                                                    <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= details.chargeSequence[j].details[k].number_of_holder %></td> 
+                                                </tr>
+                                            <% } %>
+                                        
+                                    <% } %>
+
+                                <% } %>
+                            <% } %>
+                      
+
+                   
+                </table>
+            </td>
+        </tr>
+        <% } else { %>
+            <td style="font-family: Arial; padding: 8px 15px 8px 0; background-color: #fff; color: #000; font-size: 7.5pt; border-top: 1px solid #d1d1d1; border-bottom: 1px solid #d1d1d1; ;" colspan="9">
+                There are no open charges filed.
+            </td>
+        <% } %>    
+    </table>
+    
+    <tr><td> <div style="page-break-after: always;"></div></td></tr>
+     
+     <table cellspacing="0" cellpadding="0" style="border: 0;width: 100%;margin: 0 auto;">
+        <tr>
+            <td style="font-family: Arial; padding: 8px 15px 8px 0; background-color: #FFF; color: #FF5000;border-bottom: 1px solid #d1d1d1; font-weight: bold; font-size: 9pt;">
+                GST
+            </td>
+        </tr>
+        <tr>
+            <td style="font-family: Arial; padding: 8px 15px 8px 0; background-color: #e0e0e0; color: #000; font-weight: bold; font-size: 8.25pt; border-top: 1px solid #d1d1d1; border-bottom: 1px solid #d1d1d1; ;">
+                Active GSTINs
+            </td>
+        </tr>
+        <%if (details.gst_details.length>0) { %>
+        <tr>
+            <td style="font-family: Arial; font-size: 6.75pt;">
+                <table width="100%" cellspacing="0" cellpadding="0">
+                   <tr style="background-color: #f7f7f7;">
+                      <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px;">GSTIN</td> 
+                      <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px;">State </td>
+                      <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px;"> </td> 
+                      <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px;">Latest Filing(s)</td> 
+                      <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px;">Financial Year</td> 
+                      <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px;">Tax Period</td> 
+                   </tr> 
+                   
+                        <%for(var j=0; j<details.gst_details.length; j++) {  %>
+                            <%if (details.gst_details[j].status=="Active") { %>
+                                <%for(var k=0; k<2; k++) {  %>
+                                    <%if (k==0) { %>
+                                    <tr>
+                                        <td style=" padding: 1px;"><%= details.gst_details[j].gstin %></td> 
+                                        <td style=" padding: 1px;"><%= details.gst_details[j].state %></td> 
+                                        <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= details.gst_details[j].filings[k].returnType %></td> 
+                                        <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= new Date(details.gst_details[j].filings[k].dateOfFilling).toLocaleDateString("en-US", { year: 'numeric', month: 'long', day: 'numeric' }) %></td> 
+                                        <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= details.gst_details[j].filings[k].financialYear %></td> 
+                                        <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= details.gst_details[j].filings[k].taxPeriod %></td> 
+
+                                    </tr>
+                                    <% } else { %>
+                                    <tr>
+                                        <%if (k==1) { %>
+                                            <td colspan="2" style="border-bottom: 1px solid #d1d1d1; padding: 1px;">&nbsp;</td> 
+                                        <% } else { %>
+                                            <td colspan="2">&nbsp;</td> 
+                                        <% } %>
+                                        <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= details.gst_details[j].filings[k].returnType %></td> 
+                                        <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= new Date(details.gst_details[j].filings[k].dateOfFilling).toLocaleDateString("en-US", { year: 'numeric', month: 'long', day: 'numeric' }) %></td> 
+                                        <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= details.gst_details[j].filings[k].financialYear %></td> 
+                                        <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= details.gst_details[j].filings[k].taxPeriod %></td>  
+                                    </tr>
+                                    <% } %>
+                                <% } %>
+                            <% } %>
+                        <% } %>
+                    
+
+                   
+                </table>
+            </td>
+        </tr>
+        <% } else {%>
+            <td style="font-family: Arial; padding: 8px 15px 8px 0; background-color: #fff; color: #000; font-size: 7.5pt; border-top: 1px solid #d1d1d1; border-bottom: 1px solid #d1d1d1; ;" colspan="6">
+                There is no Active GSTINs.
+            </td>
+        <% } %>    
+    </table>
+    <!-- table no 4 -->
+    <tr><td> <div style="page-break-after: always;"></div></td></tr>
+
+    <!-- table no 4 -->
+    <table cellspacing="0" cellpadding="0" style="border: 0;width: 100%;margin: 0 auto;">
+       <tr>
+           <td style="font-family: Arial; padding: 8px 15px 8px 0; background-color: #FFF; color: #FF5000;border-bottom: 1px solid #d1d1d1; font-weight: bold; font-size: 9pt;">
+               Legal History
+           </td>
+       </tr>
+       <%if (details.legal_history.length>0) { %>
+       <tr>
+           <td style="font-family: Arial; font-size: 6.75pt; text-align:left;">
+               <table cellspacing="0" cellpadding="0" style="width:100%;">
+                  <tr style="background-color: #f7f7f7;">
+                     <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px 5px 1px 1px;">Petitioner</td> 
+                     <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px 5px 1px 1px;">Respondent </td>
+                     <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px 5px 1px 1px;">Court </td> 
+                     <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px 5px 1px 1px;">Date</td> 
+                     <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px 5px 1px 1px;">Case Status</td> 
+                     <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px 5px 1px 1px;">Case Number</td> 
+                  </tr> 
+                       <%for(var j=0; j<details.legal_history.length; j++) {  %>
+                            <%if (details.legal_history[j].case_status!='Disposed') { %>
+                                <tr>
+                                    <td style="border-bottom: 1px solid #d1d1d1; padding: 1px 5px 1px 1px;"><%= details.legal_history[j].petitioner!=null?details.legal_history[j].petitioner:"" %></td> 
+                                    <td style="border-bottom: 1px solid #d1d1d1; padding: 1px 5px 1px 1px;"><%= details.legal_history[j].respondent!=null?details.legal_history[j].respondent:"" %></td> 
+                                    <td style="border-bottom: 1px solid #d1d1d1; padding: 1px 5px 1px 1px;"><%= details.legal_history[j].court!=null?details.legal_history[j].court:"" %></td> 
+                                    <td style="border-bottom: 1px solid #d1d1d1; padding: 1px 5px 1px 1px;"><%= details.legal_history[j].date!=null?new Date(details.legal_history[j].date).toLocaleDateString("en-US", { year: 'numeric', month: 'long', day: 'numeric' }):"" %></td> 
+                                    <td style="border-bottom: 1px solid #d1d1d1; padding: 1px 5px 1px 1px;"><%= details.legal_history[j].case_status!=null?details.legal_history[j].case_status:"" %></td> 
+                                    <td style="border-bottom: 1px solid #d1d1d1; padding: 1px 5px 1px 1px;"><%= details.legal_history[j].case_number!=null?details.legal_history[j].case_number:"" %></td> 
+
+                                </tr>
+                           <% } %>
+                       <% } %>
+
+                  
+               </table>
+           </td>
+       </tr> 
+       <% } else { %>
+           <tr>
+               <td style="font-family: Arial;border-bottom: 1px solid #d1d1d1; padding: 8px 15px 8px 0; font-size: 7.5pt;">
+                   There are no Cases Filed against this corporate as per our records.
+               </td>
+           </tr>
+           
+       <% } %>
+   </table>
+   <!-- table no 4 -->
+
+   <tr><td> <div style="page-break-after: always;"></div></td></tr>
+
+    <!-- table no 4 -->
+    <table cellspacing="0" cellpadding="0" style="border: 0;width: 100%;margin: 0 auto;">
+        <tr>
+            <td style="font-family: Arial; padding: 8px 15px 8px 0; background-color: #FFF; color: #FF5000;border-bottom: 1px solid #d1d1d1; font-weight: bold; font-size: 9pt;">
+                Credit Ratings
+            </td>
+        </tr>
+        <%if (details.creditRatingList.length>0) { %>
+            <%for(var j=0; j<details.creditRatingList.length; j++) {  %>
+                <tr>
+                    <td style="font-family: Arial; padding:8px 15px 8px 0; background-color: #e0e0e0; color: #000; font-weight: bold; font-size: 7.5pt; border-top: 1px solid #d1d1d1; border-bottom: 1px solid #d1d1d1; ;">
+                        <%= details.creditRatingList[j].rating_agency!=null?details.creditRatingList[j].rating_agency.toUpperCase():"-" %>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-family: Arial; padding: 8px 15px 8px 0;  font-weight: bold; font-size: 7.5pt; border-top: 1px solid #d1d1d1; border-bottom: 1px solid #d1d1d1; ;">
+                        <%= details.creditRatingList[j].rating_date!=null?new Date(details.creditRatingList[j].rating_date).toLocaleDateString("en-US", { year: 'numeric', month: 'long', day: 'numeric' }):"-" %>
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td style="font-family: Arial; font-size: 6.75pt;">
+                        <table width="100%" cellspacing="0" cellpadding="0">
+                        <tr style="background-color: #f7f7f7;">
+                            <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px;">Instrument</td> 
+                            <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px;">Amount( INR, Million) </td>
+                            <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px;">Currency </td> 
+                            <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px;">Rating</td> 
+                            <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px;">Action</td>
+                            <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px;">Outlook</td> 
+                            <td style="font-weight: bold; border-bottom: 1px solid #d1d1d1; padding: 1px;">Remarks</td> 
+ 
+                        </tr> 
+                            <%for(var k=0; k<details.creditRatingList[j].details.length; k++) {  %>
+                    
+                                <tr>
+                                    <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= details.creditRatingList[j].details[k].type_of_loan!=null?details.creditRatingList[j].details[k].type_of_loan:"-" %></td> 
+                                    <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= details.creditRatingList[j].details[k].amount!=null?(details.creditRatingList[j].details[k].amount/1000000).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","):"-" %></td> 
+                                    <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= details.creditRatingList[j].details[k].currency!=null?details.creditRatingList[j].details[k].currency:"-" %></td> 
+                                    <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= details.creditRatingList[j].details[k].rating_details[0].rating!=null?details.creditRatingList[j].details[k].rating_details[0].rating:"-" %></td> 
+                                    <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= details.creditRatingList[j].details[k].rating_details[0].action!=null?details.creditRatingList[j].details[k].rating_details[0].action:"-" %></td> 
+                                    <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= details.creditRatingList[j].details[k].rating_details[0].outlook!=null?details.creditRatingList[j].details[k].rating_details[0].outlook:"-" %></td> 
+                                    <td style="border-bottom: 1px solid #d1d1d1; padding: 1px;"><%= details.creditRatingList[j].details[k].rating_details[0].remarks!=null?details.creditRatingList[j].details[k].rating_details[0].remarks:"-" %></td> 
+                                </tr>
+                            <% } %>
+
+                        
+                        </table>
+                    </td>
+                </tr>
+            <% } %>
+        <% } else { %>
+            <tr>
+                <td style="font-family: Arial; padding: 8px 15px 8px 0;  font-weight: bold; font-size: 7.5pt; border-top: 1px solid #d1d1d1; border-bottom: 1px solid #d1d1d1; ;">
+                    There are no credit ratings available.
+                </td>
+            </tr>
+        <% } %>    
+
+        
+    </table>
+    <!-- table no 4 -->
+    <tr><td> <div style="page-break-after: always;"></div></td></tr>
+
+   <!-- table no 4 -->
+   <table cellspacing="0" cellpadding="0" style="border: 0;width: 100%;margin: 0 auto;">
+      <tr>
+          <td style="font-family: Arial; padding: 8px 15px 8px 0; background-color: #FFF; color: #FF5000;border-bottom: 1px solid #d1d1d1; font-weight: bold; font-size: 9pt;">
+              Compliance
+          </td>
+      </tr>
+      <tr>
+          <td style="font-family: Arial; padding: 8px 15px 8px 0; background-color: #e0e0e0; color: #000; font-weight: bold; font-size: 7.5pt; border-top: 1px solid #d1d1d1; border-bottom: 1px solid #d1d1d1; ;">
+              Incidents of Name Removal U/S 248(5) by ROC
+          </td>
+      </tr>
+      <tr>
+            <td style="font-family: Arial;border-bottom: 1px solid #d1d1d1; padding:10px 0; font-size: 7.5pt; ">
+                <%= details.struckoff248_details.struck_off_status %><br/>
+                <%= details.struckoff248_details.restored_status %>
+            </td>
+      </tr>
+          
+  </table>

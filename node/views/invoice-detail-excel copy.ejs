@@ -1,0 +1,69 @@
+
+    <table style="width: 800px; border: 1px solid #d1d1d1; padding: 15px; font-family: Arial, Helvetica, sans-serif;" name="Annexure to invoice">
+      <tr style="padding-bottom: 10px;">
+         <td style="width:5%; font-weight: bold;"></td>
+         <td style="width:95%;">Invoice Details</td>
+      </tr>  
+      
+      <% var grand_total = 0; %>
+      <%if (detailsinv.branchrelatedinfo.length>0) { %>
+         <% for(var i=0; i < detailsinv.branchrelatedinfo.length; i++) { %>
+            <% var branch_total=0; %>
+            <tr style="padding-bottom: 10px;">
+               <td style="width:20%; font-weight: bold;">Branch name</td>
+               <td style="width:80%;font-weight: bold;"><%= detailsinv.branchrelatedinfo[i].branch_name %></td>
+            </tr>
+            <tr>
+               <td style="width:5%; font-weight: bold;">Sr. No.</td> 
+               <td style="width:20%; font-weight: bold;">Date of request</td> 
+               <td style="width:20%; font-weight: bold;">Client name</td> 
+               <td style="width:20%; font-weight: bold;">Company name</td> 
+               <td style="width:10%; font-weight: bold;">Country</td> 
+               <td style="width:10%; font-weight: bold;">Customer ref</td> 
+               <td style="width:5%; font-weight: bold;">Type of order</td> 
+               <td style="width:10%; font-weight: bold;">Price per report</td>        
+         </tr>
+         <%if (detailsinv.branchrelatedinfo[i].details.length>0) { %>
+            <% for(var l=0; l < detailsinv.branchrelatedinfo[i].details.length; l++) { %>
+            <tr>
+               <td><%= l+1 %></td> 
+               <td><%= detailsinv.branchrelatedinfo[i].details[l].created_at %></td> 
+                     <td><%= detailsinv.branchrelatedinfo[i].details[l].userDetail.name %></td> 
+                     <td><%= detailsinv.branchrelatedinfo[i].details[l].company_name %></td> 
+                     <td><%= detailsinv.branchrelatedinfo[i].details[l].company_address %></td> 
+                     <td><%= detailsinv.branchrelatedinfo[i].details[l].internal_reference_no %></td> 
+                     <td><%= detailsinv.branchrelatedinfo[i].details[l].type %></td> 
+                     <td><%= detailsinv.branchrelatedinfo[i].details[l].walletLog.total_amount %></td>
+                     <% branch_total=branch_total+detailsinv.branchrelatedinfo[i].details[l].walletLog.total_amount %>
+            </tr>
+                     <% } %>
+            <% } %>
+
+            <tr>
+               <td></td> 
+               <td></td> 
+               <td></td> 
+               <td></td> 
+               <td></td> 
+               <td></td> 
+               <td>Branch Total (USD)</td> 
+               <td><%= branch_total %>$</td> 
+               <% grand_total=grand_total+branch_total %> 
+            </tr>    
+              
+         <% } %>
+         <% } %>
+        
+         <tr>
+            <td></td> 
+            <td></td> 
+            <td></td> 
+            <td></td> 
+            <td></td> 
+            <td></td> 
+            <td>Grand Total (USD)</td> 
+            <td><%= grand_total %>$</td> 
+            
+         </tr> 
+      
+     </table>
